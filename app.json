@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "nutri-appointments",
+    "slug": "nutri-appointments",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
