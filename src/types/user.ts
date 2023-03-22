@@ -1,3 +1,5 @@
+import { ROLE } from '../constants/user';
+
 export interface User {
   email: string;
   password: string;
@@ -5,4 +7,7 @@ export interface User {
   updatedAt?: Date;
   username: string;
   name: string;
+  personId: string;
+  role: ROLE;
+  isCreator: boolean;
 }
