@@ -56,3 +56,5 @@ web-build/
 dist/
 
 .env
+
+.tool-versions

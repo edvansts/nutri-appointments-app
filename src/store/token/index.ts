@@ -1,6 +1,6 @@
-import create from "zustand";
-import { persist } from "zustand/middleware";
-import { deleteItem, readItem, saveItem } from "../../config/secure-store";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import { deleteItem, readItem, saveItem } from '../../config/secure-store';
 
 const TOKEN_STORE_KEY = `token-store`;
 
@@ -17,11 +17,11 @@ export const useTokenStore = create<TokenState>()(
     }),
     {
       name: TOKEN_STORE_KEY,
-      getStorage: () => ({
+      storage: {
         setItem: saveItem,
         getItem: readItem,
         removeItem: deleteItem,
-      }),
+      },
     }
   )
 );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-native-paper';
 import * as SplashScreen from 'expo-splash-screen';
 import { RootNavigator } from './src/config/navigator';
@@ -11,6 +11,10 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    setTimeout(hideSplashScreen, 1000);
+  }, []);
 
   function hideSplashScreen() {
     SplashScreen.hideAsync();

@@ -18,11 +18,11 @@ export const useUserStore = create<UserState>()(
     }),
     {
       name: USER_STORE_KEY,
-      getStorage: () => ({
+      storage: {
         setItem: saveItem,
         getItem: readItem,
         removeItem: deleteItem,
-      }),
+      },
     }
   )
 );
