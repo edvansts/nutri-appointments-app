@@ -12,8 +12,8 @@ import { Container } from '../../styles/components/container';
 import { Button } from '../../styles/components/button';
 
 const SIGN_IN_SCHEMA = object({
-  email: string().email(invalidEmail),
-  password: string().min(1, requiredError),
+  email: string({ required_error: requiredError }).email(invalidEmail),
+  password: string().min(6, requiredError),
 });
 
 type ISignInForm = TypeOf<typeof SIGN_IN_SCHEMA>;
@@ -42,14 +42,16 @@ const SignIn = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <Container>
-        <View>
-          {/* <Image
-            source={require('../../../assets/images/cineme.png')}
-            resizeMode="cover"
-            alt="logo"
-          /> */}
-
-          <Text variant="headlineMedium">Entre agora!</Text>
+        <View style={{ margin: 28 }}>
+          <Text variant="headlineMedium" style={{ textAlign: 'center' }}>
+            nutri+
+          </Text>
+          <Text variant="headlineMedium" style={{ textAlign: 'center' }}>
+            Assistência Nutricional
+          </Text>
+          <Text variant="headlineMedium" style={{ textAlign: 'center' }}>
+            HU - UFS
+          </Text>
 
           {!!error && <Text> - {error.message}</Text>}
 
@@ -95,18 +97,18 @@ const SignIn = () => {
             )}
           />
 
-          <Link>Esqueceu a senha ?</Link>
-
           <Button
             textColor="white"
-            margin="10px 0"
+            margin="10px 0px"
             onPress={handleSubmit(onSubmit)}
             loading={isLoading}
           >
             Entrar
           </Button>
 
-          <Link onPress={() => navigate('register')}>Você é novo ?</Link>
+          <Link onPress={() => navigate('forgotPassword')}>Esqueceu a senha ?</Link>
+
+          <Link onPress={() => navigate('firstAccess')}>Primeiro acesso</Link>
         </View>
       </Container>
     </TouchableWithoutFeedback>

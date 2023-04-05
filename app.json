@@ -2,9 +2,26 @@
   "expo": {
     "name": "nutri-appointments",
     "slug": "nutri-appointments",
+    "orientation": "portrait",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "icon": "./src/assets/img/logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./src/assets/img/logo.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["./src/assets"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF"
+      }
+    }
   }
 }

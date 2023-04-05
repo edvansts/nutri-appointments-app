@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { RootNavigator } from './src/config/navigator';
 import { SwrProvider } from './src/config/swr';
 import dayjs from 'dayjs';
+import { theme } from './src/styles/theme';
 
 dayjs.locale('pt-br');
 
@@ -26,7 +27,7 @@ export default function App() {
   }
 
   return (
-    <Provider>
+    <Provider theme={theme}>
       <SwrProvider>
         <RootNavigator />
       </SwrProvider>
