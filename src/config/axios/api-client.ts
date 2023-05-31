@@ -1,4 +1,4 @@
-import axios, { InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { API_URL } from '@env';
 import { useTokenStore } from '../../store/token';
 
@@ -12,8 +12,16 @@ const requestInterceptor = (config: InternalAxiosRequestConfig) => {
   return config;
 };
 
+const errorResponseInterceptor = (error: AxiosResponse) => {
+  console.log(error.data);
+
+  return error;
+};
+
 const CLIENT_API = axios.create({ baseURL: API_URL });
 
 CLIENT_API.interceptors.request.use(requestInterceptor);
+
+CLIENT_API.interceptors.response.use(undefined, errorResponseInterceptor);
 
 export { CLIENT_API };
