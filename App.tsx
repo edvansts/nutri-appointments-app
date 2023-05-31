@@ -5,8 +5,10 @@ import { RootNavigator } from './src/config/navigator';
 import { SwrProvider } from './src/config/swr';
 import dayjs from 'dayjs';
 import { theme } from './src/styles/theme';
+import { initImageCacheDirectory } from './src/utils/image';
 
 dayjs.locale('pt-br');
+initImageCacheDirectory();
 
 SplashScreen.preventAutoHideAsync();
 

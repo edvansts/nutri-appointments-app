@@ -1,4 +1,8 @@
-export const removeFileExtension = (text: string) => {
+export const removeFileExtension = (text?: string) => {
+  if (!text) {
+    return text;
+  }
+
   const dotIndex = text.lastIndexOf('.');
 
   if (dotIndex === -1) {
@@ -14,7 +18,11 @@ function replaceAll(str: string, from: string, to: string) {
   return str.replace(new RegExp(from, 'g'), to);
 }
 
-export const removeHttpPrefixFromUri = (text: string) => {
+export const removeHttpPrefixFromUri = (text?: string) => {
+  if (!text) {
+    return text;
+  }
+
   const barsIndex = text.lastIndexOf('://');
 
   if (barsIndex === -1) {

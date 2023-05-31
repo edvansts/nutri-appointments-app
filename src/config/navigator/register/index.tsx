@@ -5,6 +5,7 @@ import type { RegisterStackParamList } from './types';
 import { FirstAccess } from '../../../screens/first-access';
 import { useTheme } from 'react-native-paper';
 import { useAppTheme } from '../../../hooks/theme/use-app-theme';
+import { Welcome } from '../../../screens/welcome';
 
 const Stack = createNativeStackNavigator<RegisterStackParamList>();
 
@@ -12,7 +13,8 @@ const RegisterStackNavigator = () => {
   const { colors } = useAppTheme();
 
   return (
-    <Stack.Navigator initialRouteName="signIn">
+    <Stack.Navigator initialRouteName="welcome">
+      <Stack.Screen name="welcome" component={Welcome} options={{ headerShown: false }} />
       <Stack.Screen name="signIn" component={SignIn} options={{ headerShown: false }} />
       <Stack.Screen
         name="forgotPassword"
@@ -27,7 +29,7 @@ const RegisterStackNavigator = () => {
           headerStyle: {
             backgroundColor: colors.background,
           },
-          headerTintColor: colors.gray100,
+          headerTintColor: colors.grayDark,
           headerTitleStyle: {
             fontWeight: 'bold',
           },

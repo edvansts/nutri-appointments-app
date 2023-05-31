@@ -10,6 +10,7 @@ import { HelperText, Text, TextInput } from 'react-native-paper';
 import { Link } from '../../styles/components/link';
 import { Container } from '../../styles/components/container';
 import { Button } from '../../styles/components/button';
+import { useAppTheme } from '../../hooks/theme/use-app-theme';
 
 const SIGN_IN_SCHEMA = object({
   email: string({ required_error: requiredError }).email(invalidEmail),
@@ -30,6 +31,8 @@ const SignIn = () => {
   const { navigate } = useRegisterStackNavigator();
 
   const { error, isLoading, login } = usePostLogin();
+
+  const { colors } = useAppTheme();
 
   const onSubmit: SubmitHandler<ISignInForm> = async (data) => {
     const { password, email } = data;
@@ -98,7 +101,7 @@ const SignIn = () => {
           />
 
           <Button
-            textColor="white"
+            textColor={colors.white}
             margin="10px 0px"
             onPress={handleSubmit(onSubmit)}
             loading={isLoading}

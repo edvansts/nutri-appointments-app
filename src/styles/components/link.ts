@@ -8,6 +8,6 @@ interface LinkProps {
 
 export const Link = styled(Text)<LinkProps>`
   font-weight: bold;
-  color: ${colors.gray100};
+  color: ${colors.grayDark};
   padding: ${({ padding = '10px 0px' }) => padding};
 `;
