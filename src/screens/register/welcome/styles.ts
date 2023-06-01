@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import { colors } from '../../styles/theme';
-import { Container } from '../../styles/components/container';
+import { colors } from '../../../styles/theme';
+import { Container } from '../../../styles/components/container';
 
 export const WelcomeView = styled.View`
   display: flex;
