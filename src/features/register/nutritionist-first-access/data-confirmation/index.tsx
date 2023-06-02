@@ -14,10 +14,7 @@ import { usePostCheckNutritionistFirstAccess } from '../api/use-post-confirm-nut
 import { useNutritionistFirstAccessNavigation } from '../../../../config/navigator/register/nutritionist-first-access/use-nutritionist-first-access-navigation';
 
 const DATA_CONFIRMATION_FORM_SCHEMA = object({
-  completeName: string({ required_error: requiredError }).refine(
-    (completeName) => completeName.split(' ').length > 1,
-    'Nome inválido'
-  ),
+  completeName: string({ required_error: requiredError }).min(5, 'Nome inválido'),
   crn: string().min(3, 'Crn inválido'),
   birthdayDate: date(),
 });
@@ -27,9 +24,15 @@ type DataConfirmationFormType = TypeOf<typeof DATA_CONFIRMATION_FORM_SCHEMA>;
 const DataConfirmation = () => {
   const { colors } = useAppTheme();
 
-  const { checkNutritionistFirstAccess, error } = usePostCheckNutritionistFirstAccess();
-
   const navigation = useNutritionistFirstAccessNavigation();
+
+  const handleNavigateToAccessData = () => {
+    navigation.navigate('accessData');
+  };
+
+  const { checkNutritionistFirstAccess, error, isLoading } = usePostCheckNutritionistFirstAccess({
+    onSuccess: handleNavigateToAccessData,
+  });
 
   const { control, handleSubmit, formState } = useForm<DataConfirmationFormType>({
     defaultValues: { birthdayDate: undefined, completeName: '', crn: '' },
@@ -37,17 +40,11 @@ const DataConfirmation = () => {
   });
 
   const handleSubmitForm: SubmitHandler<DataConfirmationFormType> = async (data) => {
-    try {
-      await checkNutritionistFirstAccess({
-        name: data.completeName,
-        birthdayDate: data.birthdayDate.toISOString(),
-        crn: data.crn,
-      });
-
-      navigation.navigate('accessData');
-    } catch (err) {
-      navigation.navigate('accessData');
-    }
+    checkNutritionistFirstAccess({
+      name: data.completeName,
+      birthdayDate: data.birthdayDate.toISOString(),
+      crn: data.crn,
+    });
   };
 
   return (
@@ -131,19 +128,17 @@ const DataConfirmation = () => {
             )}
           />
 
-          {!(error == null) && (
-            <Text variant="labelSmall" style={{ textAlign: 'center', color: colors.redPure }}>
-              {error.message}
-            </Text>
-          )}
+          <Text variant="labelSmall" style={{ textAlign: 'center', color: colors.redPure }}>
+            {error?.message}
+          </Text>
 
           <Button
             size="md"
             textColor={colors.white}
             style={{ borderRadius: 18, marginTop: 64 }}
             onPress={handleSubmit(handleSubmitForm)}
-            disabled={!formState.isDirty || formState.isSubmitting}
-            loading={formState.isSubmitting}
+            disabled={!formState.isDirty || isLoading}
+            loading={isLoading}
           >
             Confirmar meus dados
           </Button>

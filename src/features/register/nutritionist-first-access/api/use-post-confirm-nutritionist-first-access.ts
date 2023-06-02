@@ -42,7 +42,7 @@ const usePostCheckNutritionistFirstAccess = (
   const { trigger, isMutating, data, error, reset } = useSwrMutation(
     url,
     postCheckNutritionistFirstAccess,
-    options
+    { ...options, throwOnError: false }
   );
 
   return {
