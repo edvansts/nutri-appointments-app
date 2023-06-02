@@ -29,14 +29,13 @@ function BackButton({
     <IconButton
       icon={icon}
       iconColor={iconColor}
-      style={
-        {
-          borderRadius: 48 / 2,
-          backgroundColor,
-          width: 48,
-          height: 48,
-        } as any
-      }
+      style={{
+        borderRadius: 48 / 2,
+        backgroundColor,
+        width: 48,
+        height: 48,
+        marginTop: 16,
+      }}
       onPress={handleBackNavigation}
     />
   );
