@@ -5,7 +5,7 @@ import { removeFileExtension, removeHttpPrefixFromUri } from '../../../utils/tra
 import { IMAGE_CACHE_DIRECTORY } from '../../../constants/file-system';
 
 interface useCacheProps {
-  uri: string;
+  uri?: string;
   cacheKey?: string;
   placeholder?: {
     width: number;
@@ -18,7 +18,7 @@ const PLACEHOLDER_IMAGE = 'https://via.placeholder.com';
 
 const useImageCache = ({ uri, cacheKey: cacheKeyProps, placeholder }: useCacheProps) => {
   const isMounted = useIsMounted();
-  const [imageUri, setImageUri] = useState<string>('');
+  const [imageUri, setImageUri] = useState<string | undefined>();
 
   const normalizedCacheUri = removeHttpPrefixFromUri(removeFileExtension(uri));
 
@@ -32,7 +32,7 @@ const useImageCache = ({ uri, cacheKey: cacheKeyProps, placeholder }: useCachePr
 
   const loadImage = async ({ fileURI }) => {
     try {
-      const imageContainsNull = uri.includes('null');
+      const imageContainsNull = uri?.includes('null');
 
       if (imageContainsNull && isMounted()) {
         if (placeholder == null) {
@@ -50,7 +50,7 @@ const useImageCache = ({ uri, cacheKey: cacheKeyProps, placeholder }: useCachePr
 
       const metadata = await getInfoAsync(fileURI);
 
-      if (!metadata.exists && isMounted()) {
+      if (!metadata.exists && isMounted() && uri) {
         setImageUri(uri);
 
         await downloadAsync(uri, fileURI);

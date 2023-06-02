@@ -8,6 +8,7 @@ import { ChooseAccessTypeInfo, ChooseAccessTypeView } from './styles';
 import { Text } from 'react-native-paper';
 import { Button } from '../../../styles/components/button';
 import { useRegisterStackNavigator } from '../../../hooks/navigator/use-register-stack-navigator';
+import { type ImageSourcePropType } from 'react-native';
 
 const NutritionistAccessType = () => {
   const { colors } = useAppTheme();
@@ -16,7 +17,7 @@ const NutritionistAccessType = () => {
 
   const [assets] = useAssets([require('../../../assets/img/nutri-appointments-in-hand.jpg')]);
 
-  const [nutriAppointmesInHandImage] = (assets != null) || [];
+  const [nutriAppointmesInHandImage] = assets || [];
 
   const handleNavigateToNutritionistLogin = () => {
     navigate('signIn');
@@ -32,7 +33,7 @@ const NutritionistAccessType = () => {
 
       {nutriAppointmesInHandImage && (
         <CachedImage
-          source={nutriAppointmesInHandImage}
+          source={nutriAppointmesInHandImage as ImageSourcePropType}
           style={{ width: '100%', height: 'auto', flex: 1 }}
         />
       )}

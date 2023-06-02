@@ -15,5 +15,5 @@ export const Header = styled.View`
 export const Form = styled.View`
   display: flex;
   flex-direction: column;
-  padding: 24px 16px 16px;
+  padding: 24px 16px 32px;
 `;
