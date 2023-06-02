@@ -3109,7 +3109,7 @@ color-string@^1.5.3, color-string@^1.6.0:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^3.1.2:
+color@^3.1.2, color@^3.2.1:
   version "3.2.1"
   resolved "https://registry.npmjs.org/color/-/color-3.2.1.tgz"
   integrity sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA==
@@ -6868,6 +6868,13 @@ react-native-gradle-plugin@^0.71.18:
   version "0.71.18"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.18.tgz#20ef199bc85be32e45bb6cc069ec2e7dcb1a74a6"
   integrity sha512-7F6bD7B8Xsn3JllxcwHhFcsl9aHIig47+3eN4IHFNqfLhZr++3ElDrcqfMzugM+niWbaMi7bJ0kAkAL8eCpdWg==
+
+react-native-paper-dates@^0.16.2:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/react-native-paper-dates/-/react-native-paper-dates-0.16.2.tgz#536da1125fc5b324b06620f157d531a8f0aa6cbe"
+  integrity sha512-uJjiJKBRig7BzhiBmOWdNRvV1xIFw++sVkpxxB9t5uht7GKOXkWijiuGHZnlPBypTggKTc+2GS2zoKCgrN8lmA==
+  dependencies:
+    color "^3.2.1"
 
 react-native-paper@^5.4.1:
   version "5.4.1"

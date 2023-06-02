@@ -13,9 +13,7 @@ const requestInterceptor = (config: InternalAxiosRequestConfig) => {
 };
 
 const errorResponseInterceptor = (error: AxiosResponse) => {
-  console.log(error.data);
-
-  return error;
+  throw error;
 };
 
 const CLIENT_API = axios.create({ baseURL: API_URL });

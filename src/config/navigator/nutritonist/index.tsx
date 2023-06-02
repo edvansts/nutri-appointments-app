@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import type { NutritionistStackParamList } from './types';
-import { Feed } from '../../../screens/nutritionist/feed';
+import { Feed } from '../../../features/nutritionist/feed';
 
 const Stack = createNativeStackNavigator<NutritionistStackParamList>();
 

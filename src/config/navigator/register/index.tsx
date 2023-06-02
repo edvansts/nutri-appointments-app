@@ -1,12 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SignIn } from '../../../screens/sign-in';
-import type { RegisterStackNavigationProps, RegisterStackParamList } from './types';
-import { FirstAccess } from '../../../screens/first-access';
+import type { RegisterStackParamList } from './types';
+import { FirstAccess } from '../../../features/first-access';
 import { useAppTheme } from '../../../hooks/theme/use-app-theme';
-import { Welcome } from '../../../screens/register/welcome';
-import { NutritionistAccessType } from '../../../screens/register/nutritionist-access-type';
-import { IconButton } from 'react-native-paper';
+import { Welcome } from '../../../features/register/welcome';
+import { NutritionistFirstAccess } from './nutritionist-first-access';
+import { NutritionistAccessType } from '../../../features/register/nutritionist-access-type';
 
 const Stack = createNativeStackNavigator<RegisterStackParamList>();
 
@@ -19,30 +18,13 @@ const RegisterStackNavigator = () => {
       <Stack.Screen
         name="nutritionistAccessType"
         component={NutritionistAccessType}
-        options={({ navigation }) => ({
-          headerShown: true,
-          headerTitle: '',
-          headerTransparent: true,
-          headerLeft: (props) => (
-            <IconButton
-              icon="arrow-left"
-              iconColor={colors.white}
-              style={
-                {
-                  borderRadius: 48 / 2,
-                  backgroundColor: colors.greenDarker,
-                  width: 48,
-                  height: 48,
-                } as any
-              }
-              onPress={
-                props.canGoBack ? (navigation as RegisterStackNavigationProps).goBack : undefined
-              }
-            />
-          ),
-        })}
+        options={{ headerShown: false }}
       />
-      <Stack.Screen name="signIn" component={SignIn} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="nutritionistFirstAccess"
+        component={NutritionistFirstAccess}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="forgotPassword"
         component={FirstAccess}
