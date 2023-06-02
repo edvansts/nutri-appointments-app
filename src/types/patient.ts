@@ -1,4 +1,4 @@
-import { CIVIL_STATUS, GENDER, SEX } from '../constants/patient';
+import { type CIVIL_STATUS, type GENDER, type SEX } from '../constants/patient';
 
 export interface Patient {
   id: string;

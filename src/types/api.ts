@@ -1,9 +1,9 @@
-import { AxiosError } from 'axios';
+import { type AxiosError } from 'axios';
 
 export interface DefaultData<T> {
   arg: T;
 }
 
-export interface ErrorWithMessage<T = { message?: string }> extends AxiosError<T> {
+export interface ErrorWithMessage extends AxiosError {
   message: string;
 }

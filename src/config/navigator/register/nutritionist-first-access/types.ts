@@ -1,9 +1,9 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-export type NutritionistFirstAccessStackParamList = {
+export interface NutritionistFirstAccessStackParamList {
   dataConfirmation: undefined;
   accessData: undefined;
-};
+}
 
 export type NutritionistFirstAccessStackNavigationProps =
   NativeStackNavigationProp<NutritionistFirstAccessStackParamList>;

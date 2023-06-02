@@ -1,4 +1,4 @@
-import { AppTheme, theme } from './';
+import { type AppTheme } from './';
 
 declare global {
   namespace ReactNativePaper {

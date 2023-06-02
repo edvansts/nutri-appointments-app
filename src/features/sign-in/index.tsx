@@ -1,10 +1,10 @@
 import React from 'react';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import { usePostLogin } from '../../api/post-login';
 import { useRegisterStackNavigator } from '../../hooks/navigator/use-register-stack-navigator';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { object, string, TypeOf } from 'zod';
+import { object, string, type TypeOf } from 'zod';
 import { invalidEmail, requiredError } from '../../constants/form';
 import { HelperText, Text, TextInput } from 'react-native-paper';
 import { Link } from '../../styles/components/link';
@@ -56,7 +56,7 @@ const SignIn = () => {
             HU - UFS
           </Text>
 
-          {!!error && <Text> - {error.message}</Text>}
+          {!(error == null) && <Text> - {error.message}</Text>}
 
           <Controller
             control={control}
@@ -109,9 +109,21 @@ const SignIn = () => {
             Entrar
           </Button>
 
-          <Link onPress={() => navigate('forgotPassword')}>Esqueceu a senha ?</Link>
+          <Link
+            onPress={() => {
+              navigate('forgotPassword');
+            }}
+          >
+            Esqueceu a senha ?
+          </Link>
 
-          <Link onPress={() => navigate('firstAccess')}>Primeiro acesso</Link>
+          <Link
+            onPress={() => {
+              navigate('firstAccess');
+            }}
+          >
+            Primeiro acesso
+          </Link>
         </View>
       </Container>
     </TouchableWithoutFeedback>

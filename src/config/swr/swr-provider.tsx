@@ -1,5 +1,5 @@
-import { AxiosError } from 'axios';
-import React, { PropsWithChildren } from 'react';
+import { type AxiosError } from 'axios';
+import React, { type PropsWithChildren } from 'react';
 import { SWRConfig } from 'swr';
 
 const normalizeError = (error: AxiosError) => {
@@ -11,7 +11,7 @@ const normalizeError = (error: AxiosError) => {
   return error;
 };
 
-const SwrProvider = ({ children }: PropsWithChildren<{}>) => {
+const SwrProvider = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <SWRConfig
       value={{

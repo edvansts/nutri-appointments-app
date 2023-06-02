@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageURISource, Image, ImageProps } from 'react-native';
+import { type ImageURISource, Image, type ImageProps } from 'react-native';
 import { useImageCache } from './hooks/use-image-cache';
 
 interface CachedImageProps extends ImageProps {
@@ -12,7 +12,8 @@ interface CachedImageProps extends ImageProps {
 }
 
 const CachedImage = ({ cacheKey, source, placeholder, ...props }: CachedImageProps) => {
-  const uri = typeof source === 'string' ? (source as string) : (source as ImageURISource).uri;
+  const uri =
+    typeof source === 'string' ? (source as string) : (source as ImageURISource).uri || '';
 
   const { imageUri } = useImageCache({ cacheKey, uri, placeholder });
 

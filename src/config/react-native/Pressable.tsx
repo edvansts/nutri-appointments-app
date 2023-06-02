@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from "react";
+import React, { type FunctionComponent } from "react";
 
 import {
   Pressable as RNPressable,
-  PressableProps as RNPressableProps,
-  StyleProp,
-  ViewStyle,
+  type PressableProps as RNPressableProps,
+  type StyleProp,
+  type ViewStyle,
 } from "react-native";
 
 export interface PressableProps extends RNPressableProps {
@@ -18,7 +18,7 @@ type MergePressableStylesFn = (
 ) => RNPressableProps["style"];
 
 const mergePressableStyles: MergePressableStylesFn = (style, pressStyle) => {
-  if (!pressStyle) {
+  if (pressStyle == null) {
     return style;
   }
 

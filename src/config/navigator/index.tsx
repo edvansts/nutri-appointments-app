@@ -15,7 +15,7 @@ const RootNavigator = () => {
 
   return (
     <NavigationContainer>
-      {token && user ? (
+      {token && (user != null) ? (
         isNutrionist ? (
           <NutritionistStackNavigator />
         ) : (

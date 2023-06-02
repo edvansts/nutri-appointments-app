@@ -3,9 +3,9 @@ import { Container } from '../../../../styles/components/container';
 import { Form, Header } from './styles';
 import { HelperText, Text, TextInput } from 'react-native-paper';
 import { useAppTheme } from '../../../../hooks/theme/use-app-theme';
-import { TypeOf, date, object, string } from 'zod';
+import { type TypeOf, date, object, string } from 'zod';
 import { requiredError } from '../../../../constants/form';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import { DatePickerInput } from 'react-native-paper-dates';
 import { Button } from '../../../../styles/components/button';
@@ -131,7 +131,7 @@ const DataConfirmation = () => {
             )}
           />
 
-          {!!error && (
+          {!(error == null) && (
             <Text variant="labelSmall" style={{ textAlign: 'center', color: colors.redPure }}>
               {error.message}
             </Text>

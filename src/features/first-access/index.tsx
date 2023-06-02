@@ -27,10 +27,10 @@ const FirstAccess = () => {
           Que tipo de acesso você quer realizar?
         </Text>
 
-        <Button margin="10px 0px" textColor="white" onPress={() => navigate('forgotPassword')}>
+        <Button margin="10px 0px" textColor="white" onPress={() => { navigate('forgotPassword'); }}>
           Paciente
         </Button>
-        <Button margin="10px 0px" textColor="white" onPress={() => navigate('forgotPassword')}>
+        <Button margin="10px 0px" textColor="white" onPress={() => { navigate('forgotPassword'); }}>
           Nutricionista
         </Button>
       </View>

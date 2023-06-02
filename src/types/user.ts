@@ -1,4 +1,4 @@
-import { ROLE } from '../constants/user';
+import { type ROLE } from '../constants/user';
 
 export interface User {
   email: string;

@@ -1,11 +1,5 @@
 import { DefaultTheme, configureFonts } from 'react-native-paper';
-import {
-  Fonts,
-  MD3Type,
-  MD3Typescale,
-  MD3TypescaleKey,
-  ThemeProp,
-} from 'react-native-paper/lib/typescript/src/types';
+import { type MD3Type, type MD3TypescaleKey } from 'react-native-paper/lib/typescript/src/types';
 
 const colors = {
   ...DefaultTheme.colors,

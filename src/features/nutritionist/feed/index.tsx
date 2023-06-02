@@ -8,7 +8,7 @@ const Feed = () => {
 
   return (
     <Container>
-      <Text onPress={() => setToken('')}>Nutritionist Feed</Text>
+      <Text onPress={() => { setToken(''); }}>Nutritionist Feed</Text>
     </Container>
   );
 };

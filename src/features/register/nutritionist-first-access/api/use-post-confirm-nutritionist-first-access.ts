@@ -1,8 +1,8 @@
-import { AxiosError } from 'axios';
-import useSwrMutation, { SWRMutationConfiguration } from 'swr/mutation';
+import { type AxiosError } from 'axios';
+import useSwrMutation, { type SWRMutationConfiguration } from 'swr/mutation';
 import { CLIENT_API } from '../../../../config/axios/api-client';
-import { DefaultData, ErrorWithMessage } from '../../../../types/api';
-import { Nutritionist } from '../../../../types/nutritionist';
+import { type DefaultData, type ErrorWithMessage } from '../../../../types/api';
+import { type Nutritionist } from '../../../../types/nutritionist';
 
 interface PostCheckNutritionistFirstAccessParams {
   name: string;
@@ -18,13 +18,15 @@ const postCheckNutritionistFirstAccess = async (
 ) => {
   const data = arg;
 
-  return CLIENT_API.post<Nutritionist>(url, data)
+  return await CLIENT_API.post<Nutritionist>(url, data)
     .then((response) => response.data)
     .catch((err) => {
-      throw {
+      const error: ErrorWithMessage = {
         ...(err as AxiosError),
         message: 'Não foi possível localizar seu pré-cadastro',
-      } as ErrorWithMessage;
+      };
+
+      throw error;
     });
 };
 

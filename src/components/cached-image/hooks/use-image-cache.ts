@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useIsMounted } from 'usehooks-ts';
-import { getInfoAsync, downloadAsync, makeDirectoryAsync } from 'expo-file-system';
+import { getInfoAsync, downloadAsync } from 'expo-file-system';
 import { removeFileExtension, removeHttpPrefixFromUri } from '../../../utils/transform';
 import { IMAGE_CACHE_DIRECTORY } from '../../../constants/file-system';
 
@@ -18,11 +18,11 @@ const PLACEHOLDER_IMAGE = 'https://via.placeholder.com';
 
 const useImageCache = ({ uri, cacheKey: cacheKeyProps, placeholder }: useCacheProps) => {
   const isMounted = useIsMounted();
-  const [imageUri, setImageUri] = useState(null);
+  const [imageUri, setImageUri] = useState<string>('');
 
   const normalizedCacheUri = removeHttpPrefixFromUri(removeFileExtension(uri));
 
-  const cacheKey = cacheKeyProps || normalizedCacheUri;
+  const cacheKey = cacheKeyProps || normalizedCacheUri || '';
 
   const filesystemURI = `${IMAGE_CACHE_DIRECTORY}${cacheKey}`;
 
@@ -35,15 +35,17 @@ const useImageCache = ({ uri, cacheKey: cacheKeyProps, placeholder }: useCachePr
       const imageContainsNull = uri.includes('null');
 
       if (imageContainsNull && isMounted()) {
-        if (!placeholder) {
-          return setImageUri(null);
+        if (placeholder == null) {
+          setImageUri('');
+          return;
         }
 
-        return setImageUri(
-          `${PLACEHOLDER_IMAGE}/${placeholder.width}x${placeholder.height}${
-            placeholder.text ? `?text=${placeholder.text}` : ''
-          }`
-        );
+        const newImageUri = `${PLACEHOLDER_IMAGE}/${placeholder.width}x${placeholder.height}${
+          placeholder.text ? `?text=${placeholder.text}` : ''
+        }`;
+
+        setImageUri(newImageUri);
+        return;
       }
 
       const metadata = await getInfoAsync(fileURI);
@@ -63,17 +65,17 @@ const useImageCache = ({ uri, cacheKey: cacheKeyProps, placeholder }: useCachePr
     }
   };
 
-  const checkImageCacheDirectory = async () => {
-    try {
-      const { exists, isDirectory } = await getInfoAsync(IMAGE_CACHE_DIRECTORY);
+  // const checkImageCacheDirectory = async () => {
+  //   try {
+  //     const { exists, isDirectory } = await getInfoAsync(IMAGE_CACHE_DIRECTORY);
 
-      if (isDirectory && exists) {
-        return;
-      }
+  //     if (isDirectory && exists) {
+  //       return;
+  //     }
 
-      await makeDirectoryAsync(IMAGE_CACHE_DIRECTORY);
-    } catch (err) {}
-  };
+  //     await makeDirectoryAsync(IMAGE_CACHE_DIRECTORY);
+  //   } catch (err) {}
+  // };
 
   return {
     imageUri,

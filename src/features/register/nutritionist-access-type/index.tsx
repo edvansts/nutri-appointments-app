@@ -16,7 +16,7 @@ const NutritionistAccessType = () => {
 
   const [assets] = useAssets([require('../../../assets/img/nutri-appointments-in-hand.jpg')]);
 
-  const [nutriAppointmesInHandImage] = assets || [];
+  const [nutriAppointmesInHandImage] = (assets != null) || [];
 
   const handleNavigateToNutritionistLogin = () => {
     navigate('signIn');

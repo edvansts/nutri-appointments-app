@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, { type AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
 import { API_URL } from '@env';
 import { useTokenStore } from '../../store/token';
 
@@ -6,7 +6,7 @@ const requestInterceptor = (config: InternalAxiosRequestConfig) => {
   const token = useTokenStore.getState().token;
 
   if (token) {
-    config.headers['Authorization'] = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`;
   }
 
   return config;

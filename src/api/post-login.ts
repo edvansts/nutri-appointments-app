@@ -1,10 +1,10 @@
-import { AxiosError } from 'axios';
+import { type AxiosError } from 'axios';
 import useSwrMutation from 'swr/mutation';
 import { CLIENT_API } from '../config/axios/api-client';
 import { useTokenStore } from '../store/token';
 import { useUserStore } from '../store/user';
-import { DefaultData } from '../types/api';
-import { User } from '../types/user';
+import { type DefaultData } from '../types/api';
+import { type User } from '../types/user';
 
 interface PostLoginParams {
   email: string;
@@ -18,13 +18,13 @@ interface PostLoginResponse {
 
 const url = '/auth/login';
 
-const postLogin = (url: string, { arg }: DefaultData<PostLoginParams>) => {
+const postLogin = async (url: string, { arg }: DefaultData<PostLoginParams>) => {
   const data = arg;
 
-  return CLIENT_API.post<PostLoginResponse>(url, data);
+  return await CLIENT_API.post<PostLoginResponse>(url, data);
 };
 
-const usePostLogin = ({ onSuccess }: { onSuccess?(): void } = {}) => {
+const usePostLogin = ({ onSuccess }: { onSuccess?: () => void } = {}) => {
   const { setUser } = useUserStore();
   const { setToken } = useTokenStore();
 

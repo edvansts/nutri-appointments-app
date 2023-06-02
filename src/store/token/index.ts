@@ -13,7 +13,7 @@ export const useTokenStore = create<TokenState>()(
   persist(
     (set) => ({
       token: undefined,
-      setToken: (token) => set({ token }),
+      setToken: (token) => { set({ token }); },
     }),
     {
       name: TOKEN_STORE_KEY,
