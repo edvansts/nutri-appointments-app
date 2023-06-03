@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
 
-export interface PatientStackParamList {
+export type PatientStackParamList = {
   feed: NavigatorScreenParams<any>;
-}
+};
 
 export type PatientStackNavigationProps = NativeStackNavigationProp<PatientStackParamList>;
 

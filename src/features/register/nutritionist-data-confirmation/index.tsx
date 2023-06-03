@@ -1,17 +1,17 @@
 import React from 'react';
-import { Container } from '../../../../styles/components/container';
+import { Container } from '../../../styles/components/container';
 import { Form, Header } from './styles';
 import { HelperText, Text, TextInput } from 'react-native-paper';
-import { useAppTheme } from '../../../../hooks/theme/use-app-theme';
+import { useAppTheme } from '../../../hooks/theme/use-app-theme';
 import { type TypeOf, date, object, string } from 'zod';
-import { requiredError } from '../../../../constants/form';
+import { requiredError } from '../../../constants/form';
 import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import { DatePickerInput } from 'react-native-paper-dates';
-import { Button } from '../../../../styles/components/button';
+import { Button } from '../../../styles/components/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { usePostCheckNutritionistFirstAccess } from '../api/use-post-confirm-nutritionist-first-access';
-import { useNutritionistFirstAccessNavigation } from '../../../../config/navigator/register/nutritionist-first-access/use-nutritionist-first-access-navigation';
+import { useRegisterStackNavigator } from '../../../hooks/navigator/use-register-stack-navigator';
 
 const DATA_CONFIRMATION_FORM_SCHEMA = object({
   completeName: string({ required_error: requiredError }).min(5, 'Nome inválido'),
@@ -19,27 +19,27 @@ const DATA_CONFIRMATION_FORM_SCHEMA = object({
   birthdayDate: date(),
 });
 
-type DataConfirmationFormType = TypeOf<typeof DATA_CONFIRMATION_FORM_SCHEMA>;
+type NutritionistDataConfirmationFormType = TypeOf<typeof DATA_CONFIRMATION_FORM_SCHEMA>;
 
-const DataConfirmation = () => {
+const NutritionistDataConfirmation = () => {
   const { colors } = useAppTheme();
 
-  const navigation = useNutritionistFirstAccessNavigation();
+  const navigation = useRegisterStackNavigator();
 
   const handleNavigateToAccessData = () => {
-    navigation.navigate('accessData');
+    navigation.navigate('nutritionistAccessData');
   };
 
   const { checkNutritionistFirstAccess, error, isLoading } = usePostCheckNutritionistFirstAccess({
     onSuccess: handleNavigateToAccessData,
   });
 
-  const { control, handleSubmit, formState } = useForm<DataConfirmationFormType>({
+  const { control, handleSubmit, formState } = useForm<NutritionistDataConfirmationFormType>({
     defaultValues: { birthdayDate: undefined, completeName: '', crn: '' },
     resolver: zodResolver(DATA_CONFIRMATION_FORM_SCHEMA),
   });
 
-  const handleSubmitForm: SubmitHandler<DataConfirmationFormType> = async (data) => {
+  const handleSubmitForm: SubmitHandler<NutritionistDataConfirmationFormType> = async (data) => {
     checkNutritionistFirstAccess({
       name: data.completeName,
       birthdayDate: data.birthdayDate.toISOString(),
@@ -148,4 +148,4 @@ const DataConfirmation = () => {
   );
 };
 
-export { DataConfirmation };
+export { NutritionistDataConfirmation };

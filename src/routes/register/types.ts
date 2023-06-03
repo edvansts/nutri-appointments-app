@@ -1,12 +1,14 @@
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-export interface RegisterStackParamList {
+export type RegisterStackParamList = {
   welcome: undefined;
-  nutritionistAccessType: undefined;
-  nutritionistFirstAccess: undefined;
   signIn: undefined;
   firstAccess: undefined;
   forgotPassword: undefined;
+
+  nutritionistAccessType: undefined;
+  nutritionistDataConfirmation: undefined;
+  nutritionistAccessData: undefined;
 }
 
 export type RegisterStackNavigationProps = NativeStackNavigationProp<RegisterStackParamList>;

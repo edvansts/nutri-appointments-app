@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { IconButton } from 'react-native-paper';
 import type { IconSource } from 'react-native-paper/lib/typescript/src/components/Icon';
-import { colors } from '../../../../styles/theme';
+import { colors } from '../../styles/theme';
 
 interface BackButtonProps {
   icon?: IconSource;

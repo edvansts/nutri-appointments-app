@@ -24,7 +24,7 @@ const NutritionistAccessType = () => {
   };
 
   const handleNavigateToNutritionistFirstAccess = () => {
-    navigate('nutritionistFirstAccess');
+    navigate('nutritionistDataConfirmation');
   };
 
   return (

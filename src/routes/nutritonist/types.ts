@@ -1,9 +1,9 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
 
-export interface NutritionistStackParamList {
-  feed: NavigatorScreenParams<any>;
-}
+export type NutritionistStackParamList = {
+  feed: NavigatorScreenParams<unknown>;
+};
 
 export type NutritionistStackNavigationProps =
   NativeStackNavigationProp<NutritionistStackParamList>;

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type AxiosError } from 'axios';
 import useSwrMutation, { type SWRMutationConfiguration } from 'swr/mutation';
-import { CLIENT_API } from '../../../../config/axios/api-client';
-import { type DefaultData, type ErrorWithMessage } from '../../../../types/api';
-import { type Nutritionist } from '../../../../types/nutritionist';
+import { CLIENT_API } from '@config/axios/api-client';
+import { type DefaultData, type ErrorWithMessage } from '../../../types/api';
+import { type Nutritionist } from '../../../types/nutritionist';
 
 interface PostCheckNutritionistFirstAccessParams {
   name: string;

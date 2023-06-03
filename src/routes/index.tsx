@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { useTokenStore } from '../../store/token';
-import { useUserStore } from '../../store/user';
+import { useTokenStore } from '@store/token';
+import { useUserStore } from '@store/user';
 import { RegisterStackNavigator } from './register';
-import { ROLE } from '../../constants/user';
+import { ROLE } from '@constants/user';
 import { NutritionistStackNavigator } from './nutritonist';
 import { PatientStackNavigator } from './patient';
 
@@ -15,7 +15,7 @@ const RootNavigator = () => {
 
   return (
     <NavigationContainer>
-      {token && (user != null) ? (
+      {token && user != null ? (
         isNutrionist ? (
           <NutritionistStackNavigator />
         ) : (

@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { Provider } from 'react-native-paper';
 import * as SplashScreen from 'expo-splash-screen';
-import { RootNavigator } from './src/config/navigator';
+import { RootNavigator } from '@routes/index';
 import { SwrProvider } from './src/config/swr';
 import dayjs from 'dayjs';
 import { theme } from './src/styles/theme';
