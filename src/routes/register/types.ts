@@ -14,8 +14,17 @@ export type RegisterStackParamList = {
     birthdayDate: string;
     crn: string;
   };
-
   nutritionistSignIn: undefined;
+
+  patientAccessType: undefined;
+  patientDataConfirmation: undefined;
+  patientAccessData: {
+    name: string;
+    birthdayDate: string;
+    cpf: string;
+  };
+
+  patientSignIn: undefined;
 };
 
 export type RegisterStackNavigationProps = NativeStackNavigationProp<RegisterStackParamList>;

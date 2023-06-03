@@ -10,49 +10,51 @@ import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import { DatePickerInput } from 'react-native-paper-dates';
 import { Button } from '../../../styles/components/button';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { usePostCheckNutritionistFirstAccess } from '../api/use-post-check-nutritionist-first-access';
 import { useRegisterStackNavigator } from '../../../hooks/navigator/use-register-stack-navigator';
+import { isValidCPF } from '@utils/validate';
+import { usePostCheckPatientFirstAccess } from '../api/use-post-check-patient-first-access';
+import { MaskedTextInput } from 'react-native-mask-text';
 
 const DATA_CONFIRMATION_FORM_SCHEMA = object({
   completeName: string({ required_error: requiredError }).min(5, 'Nome inválido'),
-  crn: string().min(3, 'Crn inválido'),
+  cpf: string().refine(isValidCPF, 'CPF inválido'),
   birthdayDate: date(),
 });
 
-type NutritionistDataConfirmationFormType = TypeOf<typeof DATA_CONFIRMATION_FORM_SCHEMA>;
+type PatientDataConfirmationFormType = TypeOf<typeof DATA_CONFIRMATION_FORM_SCHEMA>;
 
-const NutritionistDataConfirmation = () => {
+const PatientDataConfirmation = () => {
   const { colors } = useAppTheme();
 
   const navigation = useRegisterStackNavigator();
 
   const handleNavigateToAccessData = (data: {
     name: string;
-    crn: string;
+    cpf: string;
     birthdayDate: string;
   }) => {
-    navigation.navigate('nutritionistAccessData', data);
+    navigation.navigate('patientAccessData', data);
   };
 
-  const { checkNutritionistFirstAccess, error, isLoading } = usePostCheckNutritionistFirstAccess();
+  const { postCheckPatientFirstAccess, error, isLoading } = usePostCheckPatientFirstAccess();
 
-  const { control, handleSubmit, formState } = useForm<NutritionistDataConfirmationFormType>({
-    defaultValues: { birthdayDate: undefined, completeName: '', crn: '' },
+  const { control, handleSubmit, formState } = useForm<PatientDataConfirmationFormType>({
+    defaultValues: { birthdayDate: undefined, completeName: '', cpf: '' },
     resolver: zodResolver(DATA_CONFIRMATION_FORM_SCHEMA),
   });
 
-  const handleSubmitForm: SubmitHandler<NutritionistDataConfirmationFormType> = async (data) => {
-    checkNutritionistFirstAccess(
+  const handleSubmitForm: SubmitHandler<PatientDataConfirmationFormType> = async (data) => {
+    postCheckPatientFirstAccess(
       {
         name: data.completeName,
         birthdayDate: data.birthdayDate.toISOString(),
-        crn: data.crn,
+        cpf: data.cpf,
       },
       {
         onSuccess: () => {
           handleNavigateToAccessData({
             birthdayDate: data.birthdayDate.toISOString(),
-            crn: data.crn,
+            cpf: data.cpf,
             name: data.completeName,
           });
         },
@@ -68,7 +70,7 @@ const NutritionistDataConfirmation = () => {
             Confirmação de dados
           </Text>
           <Text variant="titleMedium" style={{ color: colors.grayDark, fontWeight: '600' }}>
-            Nutricionista
+            Paciente
           </Text>
         </Header>
 
@@ -103,20 +105,32 @@ const NutritionistDataConfirmation = () => {
 
           <Controller
             control={control}
-            name="crn"
+            name="cpf"
             render={({ field: { onChange, ...field }, formState: { errors } }) => (
               <View>
                 <TextInput
                   {...field}
                   onChangeText={onChange}
-                  label="CRN"
-                  placeholder="Insira seu CRN"
+                  label="CPF"
+                  placeholder="Insira seu CPF"
                   autoCapitalize="characters"
                   mode="outlined"
+                  keyboardType="numeric"
+                  error={!!errors.cpf}
+                  render={({ onChangeText, ...props }) => (
+                    <MaskedTextInput
+                      {...props}
+                      onChangeText={(text, maskText) => {
+                        onChangeText?.(maskText);
+                      }}
+                      ref={undefined}
+                      mask="999.999.999-99"
+                    />
+                  )}
                 />
 
                 <HelperText type="error" visible>
-                  {errors.crn?.message}
+                  {errors.cpf?.message}
                 </HelperText>
               </View>
             )}
@@ -161,4 +175,4 @@ const NutritionistDataConfirmation = () => {
   );
 };
 
-export { NutritionistDataConfirmation };
+export { PatientDataConfirmation };

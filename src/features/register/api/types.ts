@@ -12,3 +12,16 @@ export interface PostConfirmNutritionistAccessDataResponse {
   user: User;
   token: string;
 }
+
+export interface PostConfirmPatientAccessDataParams {
+  name: string;
+  birthdayDate: string;
+  cpf: string;
+  email: string;
+  password: string;
+}
+
+export interface PostConfirmPatientAccessDataResponse {
+  user: User;
+  token: string;
+}

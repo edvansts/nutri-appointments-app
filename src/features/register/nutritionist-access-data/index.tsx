@@ -9,11 +9,11 @@ import { type NutritionistDataConfirmationFormType } from './types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NUTRITIONIST_ACCESS_DATA_FORM_SCHEMA } from './constants';
 import { Button } from '@styles/components/button';
-import { usePostConfirmNutritionistAccessData } from '../api/use-post-confirm-nutritionist-access-data';
 import { useRoute } from '@react-navigation/native';
 import { type RegisterRouteProps } from '@routes/register/types';
 import { type PostConfirmNutritionistAccessDataResponse } from '../api/types';
 import { useTokenStore } from '@store/token';
+import { usePostConfirmNutritionistAccessData } from '../api/use-post-confirm-nutritionist-access-data';
 
 const NutritionistAccessData = () => {
   const { colors } = useAppTheme();

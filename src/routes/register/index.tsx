@@ -2,26 +2,36 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type { RegisterStackParamList } from './types';
 import { FirstAccess } from '@features/first-access';
-import { useAppTheme } from '@hooks/theme/use-app-theme';
 import { Welcome } from '@features/register/welcome';
 import { NutritionistAccessType } from '@features/register/nutritionist-access-type';
 import { BackButton } from '@components/back-button';
 import { NutritionistAccessData } from '@features/register/nutritionist-access-data';
 import { NutritionistDataConfirmation } from '@features/register/nutritionist-data-confirmation';
 import { SignIn } from '@features/sign-in';
+import { PatientAccessType } from '@features/register/patient-access-type';
+import { PatientDataConfirmation } from '@features/register/patient-data-confirmation';
 
 const Stack = createNativeStackNavigator<RegisterStackParamList>();
 
 const RegisterStackNavigator = () => {
-  const { colors } = useAppTheme();
-
   return (
     <Stack.Navigator initialRouteName="welcome">
       <Stack.Screen name="welcome" component={Welcome} options={{ headerShown: false }} />
       <Stack.Screen
+        name="forgotPassword"
+        component={FirstAccess}
+        options={{ title: 'Esqueci a senha' }}
+      />
+
+      <Stack.Screen
         name="nutritionistAccessType"
         component={NutritionistAccessType}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: true,
+          headerTitle: '',
+          headerTransparent: true,
+          headerLeft: () => <BackButton />,
+        }}
       />
       <Stack.Screen
         name="nutritionistDataConfirmation"
@@ -54,23 +64,46 @@ const RegisterStackNavigator = () => {
           headerLeft: () => <BackButton />,
         }}
       />
+
       <Stack.Screen
-        name="forgotPassword"
-        component={FirstAccess}
-        options={{ title: 'Esqueci a senha' }}
+        name="patientAccessType"
+        component={PatientAccessType}
+        options={{
+          headerShown: true,
+          headerTitle: '',
+          headerTransparent: true,
+          headerLeft: () => <BackButton />,
+        }}
       />
       <Stack.Screen
-        name="firstAccess"
-        component={FirstAccess}
+        name="patientDataConfirmation"
+        component={PatientDataConfirmation}
         options={{
-          title: 'Primeiro acesso',
-          headerStyle: {
-            backgroundColor: colors.background,
-          },
-          headerTintColor: colors.grayDark,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
+          headerShown: true,
+          headerTitle: '',
+          headerTransparent: true,
+          headerLeft: () => <BackButton />,
+        }}
+      />
+      <Stack.Screen
+        name="patientAccessData"
+        component={NutritionistAccessData}
+        options={{
+          headerShown: true,
+          headerTitle: '',
+          headerTransparent: true,
+          headerLeft: () => <BackButton />,
+        }}
+      />
+
+      <Stack.Screen
+        name="patientSignIn"
+        component={SignIn}
+        options={{
+          headerShown: true,
+          headerTitle: '',
+          headerTransparent: true,
+          headerLeft: () => <BackButton />,
         }}
       />
     </Stack.Navigator>

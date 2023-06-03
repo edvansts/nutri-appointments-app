@@ -19,7 +19,7 @@ const Welcome = () => {
   const [nutriAppointmesInHandImage] = assets || [];
 
   const handleNavigateToPatientAccessType = () => {
-    navigate('signIn');
+    navigate('patientAccessType');
   };
 
   const handleNavigateToNutritionistAccessType = () => {
