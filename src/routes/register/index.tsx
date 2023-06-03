@@ -10,6 +10,7 @@ import { NutritionistDataConfirmation } from '@features/register/nutritionist-da
 import { SignIn } from '@features/sign-in';
 import { PatientAccessType } from '@features/register/patient-access-type';
 import { PatientDataConfirmation } from '@features/register/patient-data-confirmation';
+import { PatientAccessData } from '@features/register/patient-access-data';
 
 const Stack = createNativeStackNavigator<RegisterStackParamList>();
 
@@ -87,7 +88,7 @@ const RegisterStackNavigator = () => {
       />
       <Stack.Screen
         name="patientAccessData"
-        component={NutritionistAccessData}
+        component={PatientAccessData}
         options={{
           headerShown: true,
           headerTitle: '',
