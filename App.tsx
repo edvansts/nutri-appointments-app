@@ -7,9 +7,12 @@ import { theme } from './src/styles/theme';
 import { initImageCacheDirectory } from './src/utils/image';
 import { useFonts } from 'expo-font';
 import { RootNavigator } from './src/routes';
+import { initReactotron } from '@config/reacttotron';
 
 dayjs.locale('pt-br');
 initImageCacheDirectory();
+
+initReactotron();
 
 SplashScreen.preventAutoHideAsync();
 

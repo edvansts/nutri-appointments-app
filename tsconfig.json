@@ -14,6 +14,7 @@
       "@utils/*": ["./src/utils/*"],
       "@styles/*": ["./src/styles/*"],
       "src/*": ["./src/*"]
-    }
+    },
+    "module": "ESNext"
   }
 }
