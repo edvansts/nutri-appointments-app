@@ -20,7 +20,7 @@ const NutritionistAccessType = () => {
   const [nutriAppointmesInHandImage] = assets || [];
 
   const handleNavigateToNutritionistLogin = () => {
-    navigate('nutritionistSignIn');
+    navigate('signIn', { signInType: 'NUTRITIONIST' });
   };
 
   const handleNavigateToNutritionistFirstAccess = () => {

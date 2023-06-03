@@ -31,8 +31,6 @@ const NutritionistAccessData = () => {
     setToken(data.token);
   };
 
-  console.log(formState.errors);
-
   const { postConfirmNutritionistAccessData, error, isLoading } =
     usePostConfirmNutritionistAccessData({
       onSuccess: setupUserData,

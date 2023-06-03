@@ -20,7 +20,7 @@ const PatientAccessType = () => {
   const [nutriAppointmesInHandImage] = assets || [];
 
   const handleNavigateToPatientLogin = () => {
-    navigate('patientSignIn');
+    navigate('signIn', { signInType: 'PATIENT' });
   };
 
   const handleNavigateToPatientFirstAccess = () => {

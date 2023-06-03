@@ -1,16 +1,22 @@
 import React from 'react';
 import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
-import { usePostLogin } from '../../api/post-login';
-import { useRegisterStackNavigator } from '../../hooks/navigator/use-register-stack-navigator';
+import { usePostLogin } from '../api/post-login';
+import { useRegisterStackNavigator } from '../../../hooks/navigator/use-register-stack-navigator';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { object, string, type TypeOf } from 'zod';
-import { invalidEmail, requiredError } from '../../constants/form';
+import { invalidEmail, requiredError } from '../../../constants/form';
 import { HelperText, Text, TextInput } from 'react-native-paper';
-import { Link } from '../../styles/components/link';
-import { Container } from '../../styles/components/container';
-import { Button } from '../../styles/components/button';
-import { useAppTheme } from '../../hooks/theme/use-app-theme';
+import { Link } from '../../../styles/components/link';
+import { Container } from '../../../styles/components/container';
+import { Button } from '../../../styles/components/button';
+import { useAppTheme } from '../../../hooks/theme/use-app-theme';
+import { Form, Header } from './styles';
+import { useRoute } from '@react-navigation/native';
+import { type RegisterRouteProps } from '@routes/register/types';
+import { useTokenStore } from '@store/token';
+import { useSWRConfig } from 'swr';
+import { GET_USER_INFO_URL } from 'src/api/get-user-info';
 
 const SIGN_IN_SCHEMA = object({
   email: string({ required_error: requiredError }).email(invalidEmail),
@@ -28,36 +34,46 @@ const SignIn = () => {
     resolver: zodResolver(SIGN_IN_SCHEMA),
   });
 
+  const { mutate } = useSWRConfig();
+
+  const { setToken } = useTokenStore();
+
   const { navigate } = useRegisterStackNavigator();
 
-  const { error, isLoading, login } = usePostLogin();
+  const { params } = useRoute<RegisterRouteProps<'signIn'>>();
+
+  const { signInType } = params;
+
+  const { isLoading, postLogin, error } = usePostLogin({
+    onSuccess: async (data) => {
+      await mutate(GET_USER_INFO_URL, null);
+      setToken(data.token);
+    },
+  });
 
   const { colors } = useAppTheme();
+
+  const signInTypeText = signInType === 'NUTRITIONIST' ? 'Nutricionista' : 'Paciente';
 
   const onSubmit: SubmitHandler<ISignInForm> = async (data) => {
     const { password, email } = data;
 
-    try {
-      login({ password, email });
-    } catch (err) {}
+    postLogin({ password, email });
   };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <Container>
-        <View style={{ margin: 28 }}>
-          <Text variant="headlineMedium" style={{ textAlign: 'center' }}>
-            nutri+
+        <Header>
+          <Text variant="titleMedium" style={{ color: colors.greenDarker, fontWeight: '600' }}>
+            Acessar meu cadastro
           </Text>
-          <Text variant="headlineMedium" style={{ textAlign: 'center' }}>
-            Assistência Nutricional
+          <Text variant="titleMedium" style={{ color: colors.grayDark, fontWeight: '600' }}>
+            {signInTypeText}
           </Text>
-          <Text variant="headlineMedium" style={{ textAlign: 'center' }}>
-            HU - UFS
-          </Text>
+        </Header>
 
-          {!(error == null) && <Text> - {error.message}</Text>}
-
+        <Form>
           <Controller
             control={control}
             name="email"
@@ -67,7 +83,7 @@ const SignIn = () => {
                   {...field}
                   onChangeText={onChange}
                   label="Email"
-                  placeholder="maria@gmail.com"
+                  placeholder="Insira seu email"
                   autoCapitalize="none"
                   mode="outlined"
                 />
@@ -90,6 +106,7 @@ const SignIn = () => {
                   label="Senha"
                   autoCapitalize="none"
                   mode="outlined"
+                  placeholder="******"
                   secureTextEntry
                 />
 
@@ -100,31 +117,32 @@ const SignIn = () => {
             )}
           />
 
-          <Button
-            textColor={colors.white}
-            margin="10px 0px"
-            onPress={handleSubmit(onSubmit)}
-            loading={isLoading}
-          >
-            Entrar
-          </Button>
+          {!!error && (
+            <Text variant="labelSmall" style={{ textAlign: 'center', color: colors.redPure }}>
+              {error.message}
+            </Text>
+          )}
 
           <Link
             onPress={() => {
               navigate('forgotPassword');
             }}
+            textAlign="center"
+            variant="bodyLarge"
           >
-            Esqueceu a senha ?
+            Esqueci a senha
           </Link>
 
-          <Link
-            onPress={() => {
-              navigate('firstAccess');
-            }}
+          <Button
+            textColor={colors.white}
+            margin="auto 0px 0px"
+            onPress={handleSubmit(onSubmit)}
+            loading={isLoading}
+            disabled={isLoading}
           >
-            Primeiro acesso
-          </Link>
-        </View>
+            Acessar cadastro
+          </Button>
+        </Form>
       </Container>
     </TouchableWithoutFeedback>
   );

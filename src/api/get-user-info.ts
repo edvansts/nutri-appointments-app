@@ -1,8 +1,8 @@
-import useSWRImmutable from 'swr/immutable';
+import useSWR from 'swr';
 import { CLIENT_API } from '../config/axios/api-client';
 import { type User } from 'src/types/user';
 
-const url = '/auth/user-info';
+export const GET_USER_INFO_URL = '/auth/user-info';
 
 const getUserInfo = async (url: string) => {
   const response = await CLIENT_API.get<User>(url);
@@ -17,7 +17,7 @@ const useGetUserInfo = ({
   enabled?: boolean;
   onSuccess?: () => void;
 } = {}) => {
-  return useSWRImmutable(enabled ? url : null, getUserInfo, { onSuccess });
+  return useSWR(enabled ? GET_USER_INFO_URL : null, getUserInfo, { onSuccess });
 };
 
 export { useGetUserInfo };

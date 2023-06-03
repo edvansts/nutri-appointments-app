@@ -31,8 +31,6 @@ const PatientAccessData = () => {
     setToken(data.token);
   };
 
-  console.log(formState.errors);
-
   const { postConfirmPatientAccessData, error, isLoading } = usePostConfirmPatientAccessData({
     onSuccess: setupUserData,
   });

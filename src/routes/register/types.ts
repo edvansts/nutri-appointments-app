@@ -4,8 +4,10 @@ import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 export type RegisterStackParamList = {
   welcome: undefined;
 
-  firstAccess: undefined;
   forgotPassword: undefined;
+  signIn: {
+    signInType: 'NUTRITIONIST' | 'PATIENT';
+  };
 
   nutritionistAccessType: undefined;
   nutritionistDataConfirmation: undefined;
@@ -14,7 +16,6 @@ export type RegisterStackParamList = {
     birthdayDate: string;
     crn: string;
   };
-  nutritionistSignIn: undefined;
 
   patientAccessType: undefined;
   patientDataConfirmation: undefined;
@@ -23,8 +24,6 @@ export type RegisterStackParamList = {
     birthdayDate: string;
     cpf: string;
   };
-
-  patientSignIn: undefined;
 };
 
 export type RegisterStackNavigationProps = NativeStackNavigationProp<RegisterStackParamList>;
