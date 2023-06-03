@@ -8,6 +8,7 @@ import { NutritionistAccessType } from '@features/register/nutritionist-access-t
 import { BackButton } from '@components/back-button';
 import { NutritionistAccessData } from '@features/register/nutritionist-access-data';
 import { NutritionistDataConfirmation } from '@features/register/nutritionist-data-confirmation';
+import { SignIn } from '@features/sign-in';
 
 const Stack = createNativeStackNavigator<RegisterStackParamList>();
 
@@ -43,6 +44,16 @@ const RegisterStackNavigator = () => {
         }}
       />
 
+      <Stack.Screen
+        name="nutritionistSignIn"
+        component={SignIn}
+        options={{
+          headerShown: true,
+          headerTitle: '',
+          headerTransparent: true,
+          headerLeft: () => <BackButton />,
+        }}
+      />
       <Stack.Screen
         name="forgotPassword"
         component={FirstAccess}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Provider } from 'react-native-paper';
 import * as SplashScreen from 'expo-splash-screen';
 import { SwrProvider } from './src/config/swr';
@@ -24,16 +24,20 @@ export default function App() {
     'Inter-ExtraBold': require('./src/assets/fonts/Inter-ExtraBold.ttf'),
   });
 
+  const onNavigatorReady = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
   if (!fontsLoaded) {
     return null;
   }
 
-  SplashScreen.hideAsync();
-
   return (
     <Provider theme={theme}>
       <SwrProvider>
-        <RootNavigator />
+        <RootNavigator onReady={onNavigatorReady} />
       </SwrProvider>
     </Provider>
   );

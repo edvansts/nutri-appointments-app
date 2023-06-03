@@ -26,13 +26,15 @@ const NutritionistDataConfirmation = () => {
 
   const navigation = useRegisterStackNavigator();
 
-  const handleNavigateToAccessData = () => {
-    navigation.navigate('nutritionistAccessData');
+  const handleNavigateToAccessData = (data: {
+    name: string;
+    crn: string;
+    birthdayDate: string;
+  }) => {
+    navigation.navigate('nutritionistAccessData', data);
   };
 
-  const { checkNutritionistFirstAccess, error, isLoading } = usePostCheckNutritionistFirstAccess({
-    onSuccess: handleNavigateToAccessData,
-  });
+  const { checkNutritionistFirstAccess, error, isLoading } = usePostCheckNutritionistFirstAccess();
 
   const { control, handleSubmit, formState } = useForm<NutritionistDataConfirmationFormType>({
     defaultValues: { birthdayDate: undefined, completeName: '', crn: '' },
@@ -40,11 +42,22 @@ const NutritionistDataConfirmation = () => {
   });
 
   const handleSubmitForm: SubmitHandler<NutritionistDataConfirmationFormType> = async (data) => {
-    checkNutritionistFirstAccess({
-      name: data.completeName,
-      birthdayDate: data.birthdayDate.toISOString(),
-      crn: data.crn,
-    });
+    checkNutritionistFirstAccess(
+      {
+        name: data.completeName,
+        birthdayDate: data.birthdayDate.toISOString(),
+        crn: data.crn,
+      },
+      {
+        onSuccess: () => {
+          handleNavigateToAccessData({
+            birthdayDate: data.birthdayDate.toISOString(),
+            crn: data.crn,
+            name: data.completeName,
+          });
+        },
+      }
+    );
   };
 
   return (
