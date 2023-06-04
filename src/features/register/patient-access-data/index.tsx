@@ -138,6 +138,7 @@ const PatientAccessData = () => {
 
           <Button
             size="md"
+            mode="contained"
             textColor={colors.white}
             style={{ borderRadius: 18, marginTop: 'auto' }}
             onPress={handleSubmit(handleSubmitForm)}

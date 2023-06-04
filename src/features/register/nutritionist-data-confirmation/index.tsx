@@ -147,6 +147,7 @@ const NutritionistDataConfirmation = () => {
 
           <Button
             size="md"
+            mode="contained"
             textColor={colors.white}
             style={{ borderRadius: 18, marginTop: 64 }}
             onPress={handleSubmit(handleSubmitForm)}

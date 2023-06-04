@@ -28,10 +28,13 @@ export const Button = styled(PaperButton)<{
   mb?: string | number;
   type?: ButtonType;
   size?: SizeType;
+  width?: string | number;
+  height?: string | number;
 }>`
   background-color: ${({ type = 'primary' }) => BUTTON_TYPES_BACKGROUND[type]};
   color: ${({ type = 'primary' }) => BUTTON_TYPES_COLOR[type]};
   margin: ${({ margin = '0px' }) => margin};
   margin-bottom: ${({ mb = '0px' }) => mb};
-  height: ${({ size = 'md' }) => SIZE_TYPES_RECORD[size]};
+  height: ${({ size = 'md', height }) => height || SIZE_TYPES_RECORD[size]};
+  width: ${({ width = 'auto' }) => width};
 `;

@@ -5,5 +5,5 @@ import styled from 'styled-components/native';
 export const LoadingScreenContainer = styled(Container)`
   align-items: center;
   justify-content: center;
-  background-color: ${colors.greenPure};
+  background-color: ${colors.greenDark};
 `;

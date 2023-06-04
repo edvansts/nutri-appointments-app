@@ -1,29 +1,22 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { useTokenStore } from '@store/token';
 import { RegisterStackNavigator } from './register';
 import { ROLE } from '@constants/user';
 import { NutritionistTabsNavigator } from './nutritionist';
 import { PatientStackNavigator } from './patient';
-import { useGetUserInfo } from 'src/api/get-user-info';
 import { LoadingScreen } from '@components/loading-screen';
+import { useUserInfo } from '@hooks/user/use-user-info';
 
 interface RootNavigatorProps {
   onReady?: () => void;
 }
 
 const RootNavigator = ({ onReady }: RootNavigatorProps) => {
-  const { token } = useTokenStore();
-
-  const hasToken = !!token;
-
-  const { data: user, isLoading } = useGetUserInfo({
-    enabled: hasToken,
-  });
+  const { user, isLoading } = useUserInfo();
 
   const isNutrionist = user?.role === ROLE.NUTRITIONIST;
 
-  if (isLoading && hasToken) {
+  if (isLoading) {
     return <LoadingScreen />;
   }
 

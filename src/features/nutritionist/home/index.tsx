@@ -1,26 +1,20 @@
-import { Text } from 'react-native';
 import React from 'react';
 import { Container } from '../../../styles/components/container';
-import { useTokenStore } from '../../../store/token';
 import { StatusBar } from 'expo-status-bar';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
+import { NutritionistHeader } from './components/nutritionist-header';
+import { NutritionistActions } from './components/nutritionist-actions';
 
 const Home = () => {
-  const { setToken } = useTokenStore();
-
   const { colors } = useAppTheme();
 
   return (
-    <Container>
-      <StatusBar backgroundColor={colors.white} />
+    <Container style={{ backgroundColor: colors.grayLighter }}>
+      <StatusBar backgroundColor={colors.greenDarker} />
 
-      <Text
-        onPress={() => {
-          setToken('');
-        }}
-      >
-        Nutritionist Home
-      </Text>
+      <NutritionistHeader />
+
+      <NutritionistActions />
     </Container>
   );
 };

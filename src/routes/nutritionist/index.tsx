@@ -11,7 +11,6 @@ import { IconButton, Text } from 'react-native-paper';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 import ClinicalNotesSvg from '@assets/icon/clinical-notes.svg';
 import { type SvgComponent } from 'src/types/utils';
-import { StatusBar } from 'expo-status-bar';
 
 const Tab = createBottomTabNavigator<NutritionistTabsParamsList>();
 
@@ -53,6 +52,7 @@ const NutritionistTabsNavigator = () => {
         tabBarStyle: {
           paddingHorizontal: 8,
           paddingBottom: 8,
+          paddingTop: 8,
           backgroundColor: colors.grayLighter,
           height: 60,
         },
