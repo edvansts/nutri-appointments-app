@@ -140,7 +140,7 @@ const NutritionistAccessData = () => {
           <Button
             size="md"
             textColor={colors.white}
-            style={{ borderRadius: 18, marginTop: 64 }}
+            style={{ borderRadius: 18, marginTop: 'auto' }}
             onPress={handleSubmit(handleSubmitForm)}
             disabled={!formState.isDirty || isLoading}
             loading={isLoading}

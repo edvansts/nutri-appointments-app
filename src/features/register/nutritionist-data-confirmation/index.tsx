@@ -15,8 +15,8 @@ import { useRegisterStackNavigator } from '../../../hooks/navigator/use-register
 
 const DATA_CONFIRMATION_FORM_SCHEMA = object({
   completeName: string({ required_error: requiredError }).min(5, 'Nome inválido'),
-  crn: string().min(3, 'Crn inválido'),
-  birthdayDate: date(),
+  crn: string({ required_error: requiredError }).min(3, 'Crn inválido'),
+  birthdayDate: date({ required_error: requiredError }),
 });
 
 type NutritionistDataConfirmationFormType = TypeOf<typeof DATA_CONFIRMATION_FORM_SCHEMA>;

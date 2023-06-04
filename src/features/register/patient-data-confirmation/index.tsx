@@ -17,8 +17,8 @@ import { MaskedTextInput } from 'react-native-mask-text';
 
 const DATA_CONFIRMATION_FORM_SCHEMA = object({
   completeName: string({ required_error: requiredError }).min(5, 'Nome inválido'),
-  cpf: string().refine(isValidCPF, 'CPF inválido'),
-  birthdayDate: date(),
+  cpf: string({ required_error: requiredError }).refine(isValidCPF, 'CPF inválido'),
+  birthdayDate: date({ required_error: requiredError }),
 });
 
 type PatientDataConfirmationFormType = TypeOf<typeof DATA_CONFIRMATION_FORM_SCHEMA>;

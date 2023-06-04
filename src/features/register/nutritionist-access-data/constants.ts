@@ -3,8 +3,8 @@ import { object, string } from 'zod';
 
 export const NUTRITIONIST_ACCESS_DATA_FORM_SCHEMA = object({
   email: string({ required_error: requiredError }).email('Email inválido'),
-  password: string().min(5, 'Senha fraca'),
-  confirmedPassword: string(),
+  password: string({ required_error: requiredError }).min(5, 'Senha fraca'),
+  confirmedPassword: string({ required_error: requiredError }),
 }).refine(
   ({ confirmedPassword, password }) => confirmedPassword === password,
 

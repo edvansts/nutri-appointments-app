@@ -20,7 +20,7 @@ import { GET_USER_INFO_URL } from 'src/api/get-user-info';
 
 const SIGN_IN_SCHEMA = object({
   email: string({ required_error: requiredError }).email(invalidEmail),
-  password: string().min(6, requiredError),
+  password: string({ required_error: requiredError }).min(6, requiredError),
 });
 
 type ISignInForm = TypeOf<typeof SIGN_IN_SCHEMA>;
