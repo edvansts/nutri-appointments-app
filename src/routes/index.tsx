@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useTokenStore } from '@store/token';
 import { RegisterStackNavigator } from './register';
 import { ROLE } from '@constants/user';
-import { NutritionistStackNavigator } from './nutritonist';
+import { NutritionistTabsNavigator } from './nutritionist';
 import { PatientStackNavigator } from './patient';
 import { useGetUserInfo } from 'src/api/get-user-info';
 import { LoadingScreen } from '@components/loading-screen';
@@ -31,7 +31,7 @@ const RootNavigator = ({ onReady }: RootNavigatorProps) => {
     <NavigationContainer onReady={onReady}>
       {user ? (
         isNutrionist ? (
-          <NutritionistStackNavigator />
+          <NutritionistTabsNavigator />
         ) : (
           <PatientStackNavigator />
         )
