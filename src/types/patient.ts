@@ -1,4 +1,5 @@
 import { type CIVIL_STATUS, type GENDER, type SEX } from '../constants/patient';
+import { type Person } from './person';
 
 export interface Patient {
   id: string;
@@ -15,4 +16,5 @@ export interface Patient {
   historyWeightGain: string;
   phoneNumber: string;
   personId: string;
+  person?: Person;
 }

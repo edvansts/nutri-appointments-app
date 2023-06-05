@@ -1,27 +1,16 @@
 import React from 'react';
-import { ActionButton, ActionButtonContent, NutritionistActionsContainer } from './styles';
+import { ActionButton, ActionButtonContent, MainActionsContainer } from './styles';
 import { Text } from '@styles/components/text';
-// import { useTokenStore } from '@store/token';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const NutritionistActions = () => {
-  // const { setToken } = useTokenStore();
-
+const MainActions = () => {
   const { colors } = useAppTheme();
 
   return (
-    <NutritionistActionsContainer>
-      {/* <Text
-        onPress={() => {
-          setToken('');
-        }}
-      >
-        Nutritionist Home
-      </Text> */}
-
-      <ActionButton>
+    <MainActionsContainer>
+      <ActionButton activeOpacity={0.7}>
         <ActionButtonContent>
           <Text variant="bodyMedium" style={{ color: colors.white }}>
             Cadastrar Paciente
@@ -30,7 +19,7 @@ const NutritionistActions = () => {
         </ActionButtonContent>
       </ActionButton>
 
-      <ActionButton backgroundColor={colors.greenLighter}>
+      <ActionButton backgroundColor={colors.greenLighter} activeOpacity={0.7}>
         <ActionButtonContent>
           <Text variant="bodyMedium" fontWeight="500" style={{ color: colors.greenDarker }}>
             Agendar nova consulta
@@ -38,8 +27,8 @@ const NutritionistActions = () => {
           <MaterialCommunityIcons color={colors.greenDarker} name="calendar-plus" size={24} />
         </ActionButtonContent>
       </ActionButton>
-    </NutritionistActionsContainer>
+    </MainActionsContainer>
   );
 };
 
-export { NutritionistActions };
+export { MainActions };

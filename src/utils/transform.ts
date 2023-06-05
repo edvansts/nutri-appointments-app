@@ -33,3 +33,7 @@ export const removeHttpPrefixFromUri = (text?: string) => {
 
   return textWithoutBars;
 };
+
+export const upperCaseFirstLetter = (text: string) => {
+  return `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
+};

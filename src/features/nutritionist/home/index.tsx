@@ -2,19 +2,27 @@ import React from 'react';
 import { Container } from '../../../styles/components/container';
 import { StatusBar } from 'expo-status-bar';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
-import { NutritionistHeader } from './components/nutritionist-header';
-import { NutritionistActions } from './components/nutritionist-actions';
+import { NutritionistInfo } from './components/nutritionist-info';
+import { MainActions } from './components/main-actions';
+import { NextAppoinments } from './components/next-appointments';
+import { HomeContent, HomeView } from './styles';
 
 const Home = () => {
   const { colors } = useAppTheme();
 
   return (
-    <Container style={{ backgroundColor: colors.grayLighter }}>
+    <Container>
       <StatusBar backgroundColor={colors.greenDarker} />
 
-      <NutritionistHeader />
+      <HomeView contentContainerStyle={{ flexGrow: 1 }}>
+        <NutritionistInfo />
 
-      <NutritionistActions />
+        <HomeContent>
+          <MainActions />
+
+          <NextAppoinments />
+        </HomeContent>
+      </HomeView>
     </Container>
   );
 };

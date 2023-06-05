@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { Provider } from 'react-native-paper';
 import * as SplashScreen from 'expo-splash-screen';
 import { SwrProvider } from './src/config/swr';
+import 'dayjs/locale/pt-br';
 import dayjs from 'dayjs';
 import { theme } from './src/styles/theme';
 import { initImageCacheDirectory } from './src/utils/image';

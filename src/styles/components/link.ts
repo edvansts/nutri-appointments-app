@@ -1,8 +1,8 @@
 import { Text } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { colors } from '../theme';
+import { type TypeTextAlign } from 'src/types/theme';
 
-type TypeTextAlign = 'auto' | 'center' | 'justify' | 'left' | 'right';
 interface LinkProps {
   padding?: string | number;
   margin?: string | number;

@@ -1,18 +1,18 @@
 import React from 'react';
-import { NutritionistHeaderContainer } from './styles';
+import { NutritionistInfoContainer } from './styles';
 import { useUserInfo } from '@hooks/user/use-user-info';
 import { Text } from '@styles/components/text';
 
-const NutritionistHeader = () => {
+const NutritionistInfo = () => {
   const { user } = useUserInfo();
 
   return (
-    <NutritionistHeaderContainer>
+    <NutritionistInfoContainer>
       <Text variant="headlineSmall" fontWeight="600">
         Olá, {user?.person?.name || 'Nutricionista'}
       </Text>
-    </NutritionistHeaderContainer>
+    </NutritionistInfoContainer>
   );
 };
 
-export { NutritionistHeader };
+export { NutritionistInfo };
