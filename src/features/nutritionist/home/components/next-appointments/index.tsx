@@ -8,6 +8,10 @@ import { useNutritionistInfo } from '@features/nutritionist/hooks/use-nutritioni
 import { ActivityIndicator } from 'react-native-paper';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 import { TouchableOpacity } from 'react-native';
+import { APPOINTMENT_TYPE } from '@constants/appointments';
+import { useNutritionistTabsNavigator } from '@hooks/navigator/use-nutritionist-tabs-navigator';
+
+const APPOINTMENTS_LIMIT = 3;
 
 const NextAppoinments = () => {
   const { nutritionist } = useNutritionistInfo();
@@ -16,18 +20,13 @@ const NextAppoinments = () => {
 
   const { isLoading: isLoadingAppointments, data } = useGetNextNutritionistAppointments({
     nutritionistId: nutritionist?.id,
-    type: 'SCHEDULED',
-    limit: 3,
-    offset: 0,
+    type: APPOINTMENT_TYPE.SCHEDULED,
+    limit: APPOINTMENTS_LIMIT,
   });
 
-  const { appointments } = data || {};
+  const appointments = data ? data.map(({ appointments }) => appointments).flat() : [];
 
-  const showAppointments = appointments && appointments.length > 0;
-
-  if (isLoadingAppointments || appointments === undefined) {
-    return <ActivityIndicator color={colors.greenDarker} />;
-  }
+  const { navigate } = useNutritionistTabsNavigator();
 
   return (
     <NextAppointmentsContainer>
@@ -36,14 +35,21 @@ const NextAppoinments = () => {
           Próximas consultas
         </Text>
 
-        <TouchableOpacity style={{ paddingHorizontal: 4 }}>
+        <TouchableOpacity
+          style={{ paddingHorizontal: 4 }}
+          onPress={() => {
+            navigate('appointments');
+          }}
+        >
           <Text variant="titleSmall" fontWeight="500">
             Ver tudo
           </Text>
         </TouchableOpacity>
       </NextAppointmentsTitle>
 
-      {showAppointments ? (
+      {isLoadingAppointments ? (
+        <ActivityIndicator color={colors.greenDarker} />
+      ) : appointments.length > 0 ? (
         appointments?.map((appointment) => (
           <AppointmentCard key={appointment.id} appointment={appointment} />
         ))

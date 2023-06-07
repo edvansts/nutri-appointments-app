@@ -22,7 +22,16 @@ const RegisterStackNavigator = () => {
         headerShown: true,
         headerTitle: '',
         headerTransparent: true,
-        headerLeft: () => <BackButton />,
+        headerLeft: () => (
+          <BackButton
+            style={{
+              borderRadius: 48 / 2,
+              width: 48,
+              height: 48,
+              marginTop: 16,
+            }}
+          />
+        ),
       }}
     >
       <Stack.Screen name="welcome" component={Welcome} options={{ headerShown: false }} />

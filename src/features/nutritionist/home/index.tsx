@@ -14,7 +14,7 @@ const Home = () => {
     <Container>
       <StatusBar backgroundColor={colors.greenDarker} />
 
-      <HomeView contentContainerStyle={{ flexGrow: 1 }}>
+      <HomeView>
         <NutritionistInfo />
 
         <HomeContent>

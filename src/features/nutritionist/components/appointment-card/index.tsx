@@ -10,9 +10,10 @@ import { upperCaseFirstLetter } from '@utils/transform';
 
 interface AppointmentCardProps {
   appointment: Appointment;
+  marginVertical?: number;
 }
 
-const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
+const AppointmentCard = ({ appointment, marginVertical }: AppointmentCardProps) => {
   const { appointmentDate, patient } = appointment;
 
   const patientName = patient?.person?.name || '';
@@ -32,6 +33,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
       onPress={() => {
         console.log('appointment');
       }}
+      style={{ marginVertical }}
     >
       <DayInfo>
         <Text color={colors.greenDarker} fontWeight="500" variant="bodySmall">

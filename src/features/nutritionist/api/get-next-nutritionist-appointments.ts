@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import useSWRInfinite from 'swr/infinite';
 import {
   type GetNextNutritionistAppointmentsResponse,
   type GetNextNutritionistAppointmentsParams,
@@ -7,22 +7,34 @@ import { CLIENT_API } from '@config/axios/api-client';
 
 const getUrl = (nutritionistId: string) => `/nutritionist/${nutritionistId}/next-appointments`;
 
-const getNextNutritionistAppointments = async ([url, params]: [
+const getNextNutritionistAppointments = async ([url, params, offset]: [
   string,
-  GetNextNutritionistAppointmentsParams
+  GetNextNutritionistAppointmentsParams,
+  number
 ]) => {
-  const response = await CLIENT_API.get<GetNextNutritionistAppointmentsResponse>(url, { params });
+  const response = await CLIENT_API.get<GetNextNutritionistAppointmentsResponse>(url, {
+    params: { ...params, offset },
+  });
 
-  const totalCount = response.headers['x-total-count'];
+  const totalCount = Number(response.headers['x-total-count']);
 
   return { appointments: response.data, totalCount };
 };
 
 const useGetNextNutritionistAppointments = (params: GetNextNutritionistAppointmentsParams) => {
-  return useSWR(
-    params.nutritionistId ? [getUrl(params.nutritionistId), params] : null,
-    getNextNutritionistAppointments
-  );
+  return useSWRInfinite((pageIndex, previousPageData) => {
+    if (!params.nutritionistId) {
+      return null;
+    }
+
+    const offset = pageIndex * params.limit;
+
+    if (previousPageData && offset >= previousPageData.totalCount) {
+      return null;
+    }
+
+    return [getUrl(params.nutritionistId), params, offset];
+  }, getNextNutritionistAppointments);
 };
 
 export { useGetNextNutritionistAppointments };

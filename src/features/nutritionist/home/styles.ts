@@ -8,10 +8,11 @@ export const HomeContent = styled.View`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 24px 16px 0px;
+  padding: 24px 16px;
   gap: 38px;
 `;
 
-export const HomeView = styled.ScrollView`
+export const HomeView = styled.View`
   background-color: ${colors.grayLighter};
+  flex-grow: 1;
 `;
