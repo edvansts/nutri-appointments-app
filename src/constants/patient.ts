@@ -1,13 +1,12 @@
 export enum SEX {
   MALE = 'MALE',
   FEMALE = 'FEMALE',
-  NON_BINARY = 'NON_BINARY',
   OTHER = 'OTHER',
 }
 
 export enum GENDER {
-  MALE = 'MALE',
-  FEMALE = 'FEMALE',
+  MAN = 'MAN',
+  WOMAN = 'FEMALE',
   NON_BINARY = 'NON_BINARY',
   OTHER = 'OTHER',
 }
@@ -19,3 +18,9 @@ export enum CIVIL_STATUS {
   DIVORCED = 'DIVORCED',
   WIDOWED = 'WIDOWED',
 }
+
+export const SEX_LABEL: Record<SEX, string> = {
+  FEMALE: 'Feminino',
+  MALE: 'Masculino',
+  OTHER: 'Outro',
+};

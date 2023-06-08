@@ -28,13 +28,7 @@ const AppointmentCard = ({ appointment, marginVertical }: AppointmentCardProps) 
   const weekDay = upperCaseFirstLetter(appointmentDateDayJs.format('ddd'));
 
   return (
-    <AppointmentCardButton
-      activeOpacity={0.7}
-      onPress={() => {
-        console.log('appointment');
-      }}
-      style={{ marginVertical }}
-    >
+    <AppointmentCardButton activeOpacity={0.75} style={{ marginVertical }}>
       <DayInfo>
         <Text color={colors.greenDarker} fontWeight="500" variant="bodySmall">
           {weekDay}

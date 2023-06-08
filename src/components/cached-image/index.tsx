@@ -9,14 +9,25 @@ interface CachedImageProps extends ImageProps {
     height: number;
     text?: string;
   };
+  isCacheActived?: boolean;
 }
 
-const CachedImage = ({ cacheKey, source, placeholder, ...props }: CachedImageProps) => {
-  const uri = typeof source === 'string' ? (source as string) : (source as ImageURISource).uri;
+const CachedImage = ({
+  cacheKey,
+  source,
+  placeholder,
+  isCacheActived = true,
+  ...props
+}: CachedImageProps) => {
+  const uri = source
+    ? typeof source === 'string'
+      ? (source as string)
+      : (source as ImageURISource).uri
+    : undefined;
 
-  const { imageUri } = useImageCache({ cacheKey, uri, placeholder });
+  const { imageUri } = useImageCache({ cacheKey, uri, placeholder, isCacheActived });
 
-  return <Image {...props} source={{ uri: imageUri }} />;
+  return <Image {...props} source={source ? { uri: imageUri } : {}} />;
 };
 
 export { CachedImage };

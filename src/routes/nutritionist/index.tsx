@@ -80,7 +80,29 @@ const NutritionistTabsNavigator = () => {
         }}
         component={Appointments}
       />
-      <Tab.Screen name="medicalRecords" component={MedicalRecords} />
+      <Tab.Screen
+        name="medicalRecords"
+        component={MedicalRecords}
+        options={{
+          headerShown: true,
+          title: 'Prontuários',
+          headerTitle: ({ children, allowFontScaling, onLayout }) => (
+            <Text
+              variant="headlineSmall"
+              allowFontScaling={allowFontScaling}
+              onLayout={onLayout}
+              color={colors.white}
+            >
+              {children}
+            </Text>
+          ),
+          headerBackgroundContainerStyle: { backgroundColor: colors.greenDarker },
+          headerBackground: (style) => (
+            <View style={{ ...style, backgroundColor: colors.greenPure }}></View>
+          ),
+          headerLeft: (props) => <BackButton />,
+        }}
+      />
       <Tab.Screen name="profile" component={Profile} />
     </Tab.Navigator>
   );

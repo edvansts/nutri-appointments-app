@@ -92,7 +92,7 @@ const Appointments = () => {
             </Text>
           ) : null
         }
-        onEndReachedThreshold={100}
+        onEndReachedThreshold={0.25}
         onEndReached={hasMoreAppointments ? onListEndReached : undefined}
         ListFooterComponent={
           isLoadingOrRefreshing ? (

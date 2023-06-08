@@ -1,6 +1,6 @@
 import Reactotron, { networking, openInEditor } from 'reactotron-react-native';
 
-const hostname = '192.168.0.5';
+const hostname = '192.168.0.4';
 
 export const initReactotron = () => {
   if (!__DEV__) {

@@ -12,11 +12,17 @@ interface useCacheProps {
     height: number;
     text?: string;
   };
+  isCacheActived: boolean;
 }
 
 const PLACEHOLDER_IMAGE = 'https://via.placeholder.com';
 
-const useImageCache = ({ uri, cacheKey: cacheKeyProps, placeholder }: useCacheProps) => {
+const useImageCache = ({
+  uri,
+  cacheKey: cacheKeyProps,
+  placeholder,
+  isCacheActived,
+}: useCacheProps) => {
   const isMounted = useIsMounted();
   const [imageUri, setImageUri] = useState<string | undefined>();
 
@@ -27,7 +33,9 @@ const useImageCache = ({ uri, cacheKey: cacheKeyProps, placeholder }: useCachePr
   const filesystemURI = `${IMAGE_CACHE_DIRECTORY}${cacheKey}`;
 
   useEffect(() => {
-    loadImage({ fileURI: filesystemURI });
+    if (isCacheActived) {
+      loadImage({ fileURI: filesystemURI });
+    }
   }, []);
 
   const loadImage = async ({ fileURI }) => {
@@ -78,7 +86,7 @@ const useImageCache = ({ uri, cacheKey: cacheKeyProps, placeholder }: useCachePr
   // };
 
   return {
-    imageUri,
+    imageUri: isCacheActived ? uri : imageUri,
   };
 };
 
