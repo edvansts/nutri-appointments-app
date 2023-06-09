@@ -1,19 +1,12 @@
-import useSWRInfinite from 'swr/infinite';
 import { type GetPatientsByNameResponse, type GetPatientsByNameParams } from './types';
 import { CLIENT_API } from '@config/axios/api-client';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { GET_PATIENTS_BY_NAME_CACHE } from './cache';
 
-const url = '/patient/list';
-
-const getPatientsByName = async ([params, url, offset]: [
-  GetPatientsByNameParams,
-  string,
-  number
-]) => {
-  const response = await CLIENT_API.get<GetPatientsByNameResponse>(url, {
+const getPatientsByName = async (params: GetPatientsByNameParams, offset: number) => {
+  const response = await CLIENT_API.get<GetPatientsByNameResponse>('/patient/list', {
     params: { ...params, offset },
   });
-
-  console.log('request');
 
   const totalCount = Number(response.headers['x-total-count']);
 
@@ -21,21 +14,34 @@ const getPatientsByName = async ([params, url, offset]: [
 };
 
 const useGetPatientsByName = (params: GetPatientsByNameParams) => {
-  return useSWRInfinite(
-    (pageIndex, previousPageData) => {
-      const offset = pageIndex * params.limit;
+  return useInfiniteQuery({
+    queryKey: [GET_PATIENTS_BY_NAME_CACHE, params],
+    queryFn: async ({ pageParam: offset = 0 }) => await getPatientsByName(params, offset),
+    getNextPageParam: (lastPage, pages) => {
+      const newOffset = pages.length * params.limit;
 
-      if (pageIndex > 0 && previousPageData && offset > previousPageData.totalCount) {
-        return null;
+      if (newOffset > lastPage.totalCount) {
+        return undefined;
       }
 
-      console.log('passed');
-
-      return [params, url, offset];
+      return newOffset;
     },
-    getPatientsByName,
-    { revalidateFirstPage: true }
-  );
+  });
 };
+
+// {
+//   queryKey: [GET_PATIENTS_BY_NAME_CACHE, params],
+//   queryFn: async ({ pageParam: offset = 0 }) => await getPatientsByName(params, offset),
+//   defaultPageParam: 0,
+//   getNextPageParam: (lastPage, pages) => {
+//     const newOffset = pages.length * params.limit;
+
+//     if (newOffset > lastPage.totalCount) {
+//       return undefined;
+//     }
+
+//     return newOffset;
+//   },
+// }
 
 export { useGetPatientsByName };

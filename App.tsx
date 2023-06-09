@@ -9,6 +9,8 @@ import { initImageCacheDirectory } from './src/utils/image';
 import { useFonts } from 'expo-font';
 import { RootNavigator } from './src/routes';
 import { initReactotron } from '@config/reacttotron';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@config/react-query';
 
 dayjs.locale('pt-br');
 initImageCacheDirectory();
@@ -29,10 +31,8 @@ export default function App() {
   });
 
   const onNavigatorReady = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+    await SplashScreen.hideAsync();
+  }, []);
 
   if (!fontsLoaded) {
     return null;
@@ -40,9 +40,11 @@ export default function App() {
 
   return (
     <Provider theme={theme}>
-      <SwrProvider>
-        <RootNavigator onReady={onNavigatorReady} />
-      </SwrProvider>
+      <QueryClientProvider client={queryClient}>
+        <SwrProvider>
+          <RootNavigator onReady={onNavigatorReady} />
+        </SwrProvider>
+      </QueryClientProvider>
     </Provider>
   );
 }

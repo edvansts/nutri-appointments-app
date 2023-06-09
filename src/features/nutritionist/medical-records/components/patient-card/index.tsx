@@ -27,7 +27,7 @@ const PatientCard = ({ patient, marginVertical }: PatientCardProps) => {
   const patientAge = birthdayDate ? Math.abs(dayjs(birthdayDate).diff(new Date(), 'year')) : '';
 
   return (
-    <PatientCardContainer style={{ marginVertical }} activeOpacity={0.75}>
+    <PatientCardContainer style={{ marginVertical }} activeOpacity={0.6}>
       <Image style={{ borderRadius: 12 }} source={patientPhotoPlaceholder as ImageSourcePropType} />
 
       <PatientInfo>
