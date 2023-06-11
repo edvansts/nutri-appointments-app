@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useGetPatientsByName } from '@features/nutritionist/api/get-patients-by-name';
 import { PatientsListContainer } from './styles';
 import { PatientCard } from '../patient-card';
@@ -8,6 +8,7 @@ import { Text } from '@styles/components/text';
 import { HelperText } from 'react-native-paper';
 import { Loader } from '@components/loader';
 import { RefreshControl } from '@components/refresh-control';
+import { useNutritionistMainNavigator } from '@hooks/navigator/use-nutritionist-main-stack-navigator';
 
 const LIST_LIMIT = 15;
 
@@ -31,6 +32,8 @@ function PatientsList({ isDebouncing, patientName }: PatientListProps) {
     limit: LIST_LIMIT,
   });
 
+  const navigation = useNutritionistMainNavigator();
+
   const patients = data ? data.pages.map(({ patients }) => patients).flat() : [];
 
   const onListEndReached = () => {
@@ -40,6 +43,10 @@ function PatientsList({ isDebouncing, patientName }: PatientListProps) {
 
     fetchNextPage();
   };
+
+  const handleNavigateToPatientDetails = useCallback((patientId: string) => {
+    navigation.navigate('patientDetails', { patientId });
+  }, []);
 
   if (error && error instanceof Error) {
     const errorMessage = error instanceof Error ? error.message : error;
@@ -60,7 +67,7 @@ function PatientsList({ isDebouncing, patientName }: PatientListProps) {
       data={patients}
       keyExtractor={(item: Patient) => item.id}
       renderItem={({ item }: ListRenderItemInfo<Patient>) => (
-        <PatientCard patient={item} marginVertical={4} />
+        <PatientCard onPress={handleNavigateToPatientDetails} patient={item} marginVertical={4} />
       )}
       ListEmptyComponent={
         <Text variant="bodyMedium" textAlign="center" style={{ marginTop: 8 }}>

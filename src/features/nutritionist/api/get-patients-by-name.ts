@@ -29,19 +29,4 @@ const useGetPatientsByName = (params: GetPatientsByNameParams) => {
   });
 };
 
-// {
-//   queryKey: [GET_PATIENTS_BY_NAME_CACHE, params],
-//   queryFn: async ({ pageParam: offset = 0 }) => await getPatientsByName(params, offset),
-//   defaultPageParam: 0,
-//   getNextPageParam: (lastPage, pages) => {
-//     const newOffset = pages.length * params.limit;
-
-//     if (newOffset > lastPage.totalCount) {
-//       return undefined;
-//     }
-
-//     return newOffset;
-//   },
-// }
-
 export { useGetPatientsByName };

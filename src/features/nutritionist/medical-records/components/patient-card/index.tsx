@@ -11,9 +11,10 @@ import { useAppTheme } from '@hooks/theme/use-app-theme';
 interface PatientCardProps {
   patient: Patient;
   marginVertical?: number;
+  onPress?: (patientId: string) => void;
 }
 
-const PatientCard = ({ patient, marginVertical }: PatientCardProps) => {
+const PatientCard = ({ patient, marginVertical, onPress }: PatientCardProps) => {
   const [assets] = useAssets([require('../../../../../assets/img/patient-photo-placeholder.jpg')]);
 
   const { colors } = useAppTheme();
@@ -27,8 +28,17 @@ const PatientCard = ({ patient, marginVertical }: PatientCardProps) => {
   const patientAge = birthdayDate ? Math.abs(dayjs(birthdayDate).diff(new Date(), 'year')) : '';
 
   return (
-    <PatientCardContainer style={{ marginVertical }} activeOpacity={0.6}>
-      <Image style={{ borderRadius: 12 }} source={patientPhotoPlaceholder as ImageSourcePropType} />
+    <PatientCardContainer
+      style={{ marginVertical }}
+      activeOpacity={0.6}
+      onPress={() => onPress?.(patient.id)}
+    >
+      {patientPhotoPlaceholder && (
+        <Image
+          style={{ borderRadius: 12 }}
+          source={patientPhotoPlaceholder as ImageSourcePropType}
+        />
+      )}
 
       <PatientInfo>
         <Text color={colors.grayDark} variant="bodyMedium" fontWeight="500">

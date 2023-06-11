@@ -1,11 +1,13 @@
 import React from 'react';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator, type ActivityIndicatorProps } from 'react-native-paper';
 
-const Loader = () => {
+interface LoaderProps extends ActivityIndicatorProps {}
+
+const Loader = (props: LoaderProps) => {
   const { colors } = useAppTheme();
 
-  return <ActivityIndicator color={colors.greenDark} />;
+  return <ActivityIndicator color={colors.greenDark} {...props} />;
 };
 
 export { Loader };

@@ -1,16 +1,14 @@
-import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import type { RouteProp } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
+import { type NutritionistTabsParamsList } from './tabs/types';
 
-export type NutritionistTabsParamsList = {
-  home: undefined;
-  appointments: undefined;
-  medicalRecords: undefined;
-  profile: undefined;
+export type NutritionistMainStackParamList = {
+  tabs: NavigatorScreenParams<NutritionistTabsParamsList>;
+  patientDetails: { patientId: string };
 };
 
-export type NutritionistTabsNavigationProps = BottomTabNavigationProp<NutritionistTabsParamsList>;
+export type NutritionistMainStackNavigationProps =
+  NativeStackNavigationProp<NutritionistMainStackParamList>;
 
-export type NutritionistRouteProps<RouteName extends keyof NutritionistTabsParamsList> = RouteProp<
-  NutritionistTabsParamsList,
-  RouteName
->;
+export type NutritionistMainRouteProps<RouteName extends keyof NutritionistMainStackParamList> =
+  RouteProp<NutritionistMainStackParamList, RouteName>;

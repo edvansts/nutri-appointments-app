@@ -45,6 +45,8 @@ const MedicalRecords = () => {
         <PatientsList isDebouncing={isDebouncing} patientName={debouncedPatientNameQuery} />
 
         <StatusBar backgroundColor={colors.greenDarker} />
+
+        <StatusBar backgroundColor={colors.greenDarker} />
       </MedicalRecordsContainer>
     </TouchableWithoutFeedback>
   );
