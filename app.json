@@ -14,14 +14,27 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["./src/assets"],
+    "assetBundlePatterns": [
+      "./src/assets"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.matosed.nutriappointments"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.matosed.nutriappointments"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ba051739-8e72-4ce6-9400-43f3b04af124"
       }
-    }
+    },
+    "owner": "matos-ed",
+    "plugins": [
+      "expo-build-properties"
+    ]
   }
 }
