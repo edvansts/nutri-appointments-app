@@ -4,15 +4,9 @@ import { useGetNutritionistInfo } from '../api/get-nutritionist-info';
 const useNutritionistInfo = () => {
   const { user } = useUserInfo();
 
-  const {
-    data: nutritionist,
-    isLoading,
-    error,
-    isValidating,
-    mutate,
-  } = useGetNutritionistInfo(user?.personId);
+  const { data: nutritionist, isLoading, error, refetch } = useGetNutritionistInfo(user?.personId);
 
-  return { nutritionist, isLoading, error, isValidating, mutate };
+  return { nutritionist, isLoading, error, refetch };
 };
 
 export { useNutritionistInfo };

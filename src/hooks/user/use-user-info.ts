@@ -10,13 +10,12 @@ const useUserInfo = () => {
     data: user,
     isLoading,
     error,
-    isValidating,
-    mutate,
+    refetch,
   } = useGetUserInfo({
     enabled: hasToken,
   });
 
-  return { user, isLoading, error, isValidating, mutate };
+  return { user, isLoading, error, refetch };
 };
 
 export { useUserInfo };

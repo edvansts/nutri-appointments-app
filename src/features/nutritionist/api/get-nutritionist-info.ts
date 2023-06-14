@@ -1,17 +1,22 @@
-import useSWR from 'swr';
 import { CLIENT_API } from '@config/axios/api-client';
-import { type Nutritionist } from 'src/types/nutritionist';
+import { useQuery } from '@tanstack/react-query';
+import { GET_NUTRITIONIST_INFO } from './cache';
+import { type GetNutritionistInfoData } from './types';
 
-const getUrl = (personId: string) => `/nutritionist/person/${personId}`;
-
-const getNutritionistInfo = async (url: string) => {
-  const response = await CLIENT_API.get<Nutritionist>(url);
+const getNutritionistInfo = async (personId: string) => {
+  const response = await CLIENT_API.get<GetNutritionistInfoData>(
+    `/nutritionist/person/${personId}`
+  );
 
   return response.data;
 };
 
 const useGetNutritionistInfo = (personId?: string) => {
-  return useSWR(personId ? getUrl(personId) : null, getNutritionistInfo);
+  return useQuery({
+    queryKey: [GET_NUTRITIONIST_INFO, personId],
+    queryFn: async () => await getNutritionistInfo(personId || ''),
+    enabled: !!personId,
+  });
 };
 
 export { useGetNutritionistInfo };

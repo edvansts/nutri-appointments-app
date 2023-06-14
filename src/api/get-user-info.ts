@@ -1,23 +1,24 @@
-import useSWR from 'swr';
 import { CLIENT_API } from '../config/axios/api-client';
 import { type User } from 'src/types/user';
+import { useQuery } from '@tanstack/react-query';
+import { GET_USER_INFO_CACHE } from './cache';
 
-export const GET_USER_INFO_URL = '/auth/user-info';
-
-const getUserInfo = async (url: string) => {
-  const response = await CLIENT_API.get<User>(url);
+const getUserInfo = async () => {
+  const response = await CLIENT_API.get<User>('/auth/user-info');
 
   return response.data;
 };
 
 const useGetUserInfo = ({
   enabled = true,
-  onSuccess,
 }: {
   enabled?: boolean;
-  onSuccess?: () => void;
 } = {}) => {
-  return useSWR(enabled ? GET_USER_INFO_URL : null, getUserInfo, { onSuccess });
+  return useQuery({
+    queryFn: async () => await getUserInfo(),
+    enabled,
+    queryKey: [GET_USER_INFO_CACHE],
+  });
 };
 
 export { useGetUserInfo };
