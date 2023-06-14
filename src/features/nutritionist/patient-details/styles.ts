@@ -1,11 +1,17 @@
 import { colors } from '@styles/theme';
 import styled from 'styled-components/native';
 
-export const PatientDetailsContainer = styled.ScrollView`
+export const PatientDetailsContainer = styled.View`
   display: flex;
   flex: 1;
   background-color: ${colors.background};
-  padding: 36px 16px 24px;
+  flex-grow: 1;
+`;
+
+export const LoadingContainer = styled.View`
+  display: flex;
+  flex: 1;
+  justify-content: center;
 `;
 
 export const PatientInfoTitle = styled.View`

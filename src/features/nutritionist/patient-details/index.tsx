@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { PatientDetailsContainer, PatientInfoTitle } from './styles';
+import { LoadingContainer, PatientDetailsContainer, PatientInfoTitle } from './styles';
 import { Text } from '@styles/components/text';
-import { TouchableOpacity } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 import { useNutritionistTabsNavigator } from '@hooks/navigator/use-nutritionist-tabs-navigator';
 import { useRoute } from '@react-navigation/native';
 import { type NutritionistMainRouteProps } from '@routes/nutritionist/types';
@@ -10,6 +10,8 @@ import { HelperText } from 'react-native-paper';
 import { Loader } from '@components/loader';
 import { PatientCard } from '../medical-records/components/patient-card';
 import { NutritionalData } from './components/nutritional-data';
+import { RefreshControl } from '@components/refresh-control';
+import { PatientImages } from './components/patient-images';
 
 const PatientDetails = () => {
   const navigation = useNutritionistTabsNavigator();
@@ -18,7 +20,14 @@ const PatientDetails = () => {
     params: { patientId },
   } = useRoute<NutritionistMainRouteProps<'patientDetails'>>();
 
-  const { data: patient, isLoading, error, status } = useGetPatientById(patientId);
+  const {
+    data: patient,
+    isLoading,
+    error,
+    status,
+    refetch,
+    isRefetching,
+  } = useGetPatientById(patientId);
 
   useEffect(() => {
     if (status === 'success' && patient) {
@@ -40,34 +49,37 @@ const PatientDetails = () => {
 
   if (isLoading || !patient) {
     return (
-      <PatientDetailsContainer style={{ justifyContent: 'center' }}>
+      <LoadingContainer>
         <Loader size="large" />
-      </PatientDetailsContainer>
+      </LoadingContainer>
     );
   }
 
   return (
     <PatientDetailsContainer>
-      <PatientInfoTitle>
-        <Text variant="titleMedium" fontWeight="600">
-          Dados pessoais
-        </Text>
-
-        <TouchableOpacity
-          style={{ paddingHorizontal: 4 }}
-          onPress={() => {
-            navigation.navigate('appointments');
-          }}
-        >
-          <Text variant="titleSmall" fontWeight="500">
-            Ver tudo
+      <ScrollView
+        contentContainerStyle={{ paddingVertical: 36, paddingHorizontal: 16 }}
+        refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
+      >
+        <PatientInfoTitle>
+          <Text variant="titleMedium" fontWeight="600">
+            Dados pessoais
           </Text>
-        </TouchableOpacity>
-      </PatientInfoTitle>
 
-      <PatientCard patient={patient} />
+          {/* TODO Add onPress  */}
+          <TouchableOpacity style={{ paddingHorizontal: 4 }}>
+            <Text variant="titleSmall" fontWeight="500">
+              Ver tudo
+            </Text>
+          </TouchableOpacity>
+        </PatientInfoTitle>
 
-      <NutritionalData />
+        <PatientCard patient={patient} />
+
+        <NutritionalData />
+
+        <PatientImages patientId={patient.id} />
+      </ScrollView>
     </PatientDetailsContainer>
   );
 };

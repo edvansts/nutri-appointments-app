@@ -21,7 +21,7 @@ export const NutritionalDataCard = styled.TouchableOpacity`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 12px;
   gap: 8px;
   min-width: 156px;
   width: auto;

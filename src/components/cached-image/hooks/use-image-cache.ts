@@ -86,7 +86,7 @@ const useImageCache = ({
   // };
 
   return {
-    imageUri: isCacheActived ? uri : imageUri,
+    imageUri: isCacheActived ? imageUri : uri,
   };
 };
 

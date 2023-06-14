@@ -1,6 +1,6 @@
 import { type APPOINTMENT_TYPE } from '@constants/appointments';
 import { type Appointment } from 'src/types/appointment';
-import { type Patient } from 'src/types/patient';
+import { type BodyEvolution, type Patient } from 'src/types/patient';
 
 export interface GetNextNutritionistAppointmentsParams {
   type: APPOINTMENT_TYPE;
@@ -14,3 +14,9 @@ export interface GetPatientsByNameParams {
   patientName?: string;
 }
 export type GetPatientsByNameResponse = Patient[];
+
+export interface GetPatientBodyEvolutionParams {
+  limit: number;
+  patientId: string;
+}
+export type GetPatientBodyEvolutionResponse = BodyEvolution[];

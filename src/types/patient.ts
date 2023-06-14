@@ -18,3 +18,11 @@ export interface Patient {
   personId: string;
   person?: Person;
 }
+
+export interface BodyEvolution {
+  id: string;
+  uploadDate: string;
+  publicId: string;
+  imageUrl: string;
+  patientId: string;
+}
