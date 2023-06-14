@@ -58,3 +58,6 @@ dist/
 .env
 
 .tool-versions
+
+/envs/*
+!.gitkeep

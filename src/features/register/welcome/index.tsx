@@ -1,5 +1,4 @@
 import React from 'react';
-import { CachedImage } from '../../../components/cached-image';
 import { useRegisterStackNavigator } from '../../../hooks/navigator/use-register-stack-navigator';
 import { Text, useTheme } from 'react-native-paper';
 import { WelcomeContainer, WelcomeInfo, WelcomeView } from './styles';
@@ -7,7 +6,7 @@ import { type AppTheme } from '../../../styles/theme';
 import { Button } from '../../../styles/components/button';
 import { useAssets } from 'expo-asset';
 import { StatusBar } from 'expo-status-bar';
-import { type ImageSourcePropType } from 'react-native';
+import { Image, type ImageSourcePropType } from 'react-native';
 
 const Welcome = () => {
   const { navigate } = useRegisterStackNavigator();
@@ -31,7 +30,7 @@ const Welcome = () => {
       <StatusBar backgroundColor={colors.greenDarker} />
 
       {nutriAppointmesInHandImage && (
-        <CachedImage
+        <Image
           source={nutriAppointmesInHandImage as ImageSourcePropType}
           style={{ width: '100%', height: 'auto', flex: 1 }}
         />

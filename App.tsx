@@ -11,6 +11,7 @@ import { RootNavigator } from './src/routes';
 import { initReactotron } from '@config/reacttotron';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@config/react-query';
+import { setNotificationHandler } from 'expo-notifications';
 
 dayjs.locale('pt-br');
 initImageCacheDirectory();
@@ -18,6 +19,14 @@ initImageCacheDirectory();
 initReactotron();
 
 SplashScreen.preventAutoHideAsync();
+
+setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function App() {
   const [fontsLoaded] = useFonts({

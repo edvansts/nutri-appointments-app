@@ -4618,9 +4618,9 @@ expo-modules-core@1.2.7:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
-expo-notifications@^0.18.1:
+expo-notifications@~0.18.1:
   version "0.18.1"
-  resolved "https://registry.npmjs.org/expo-notifications/-/expo-notifications-0.18.1.tgz"
+  resolved "https://registry.yarnpkg.com/expo-notifications/-/expo-notifications-0.18.1.tgz#c726bee7b6691d5f154b874afeda3b4561571cfc"
   integrity sha512-lOEiuPE6ubkS5u7Nj/57gkmUGD/MxsRTC6bg9SGJqXIitBQZk3Tmv9y8bjTrn71n7DsrH8K7xCZTbVwr+kLQGg==
   dependencies:
     "@expo/image-utils" "^0.3.18"

@@ -1,23 +1,18 @@
-import useSwrMutation from 'swr/mutation';
 import { CLIENT_API } from '../config/axios/api-client';
-import { type DefaultData } from '../types/api';
+import { useMutation } from '@tanstack/react-query';
 
 interface PostCheckInParams {
   pushToken: string;
 }
 
-const url = '/auth/check-in';
-
-const postCheckIn = async (url: string, { arg }: DefaultData<PostCheckInParams>) => {
-  const data = arg;
-
-  const response = await CLIENT_API.post<undefined>(url, data);
+const postCheckIn = async (params: PostCheckInParams) => {
+  const response = await CLIENT_API.post<undefined>('/auth/check-in', params);
 
   return response.data;
 };
 
 const usePostCheckIn = () => {
-  return useSwrMutation(url, postCheckIn);
+  return useMutation({ mutationFn: postCheckIn });
 };
 
 export { usePostCheckIn };

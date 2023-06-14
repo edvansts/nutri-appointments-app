@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "nutri-appointments",
+    "name": "Nutri Consultas +",
     "slug": "nutri-appointments",
     "orientation": "portrait",
     "version": "1.0.0",
@@ -14,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "./src/assets"
-    ],
+    "assetBundlePatterns": ["./src/assets"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.matosed.nutriappointments"
@@ -25,7 +23,8 @@
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.matosed.nutriappointments"
+      "package": "com.matosed.nutriappointments",
+      "googleServicesFile": "./envs/google-services.json"
     },
     "extra": {
       "eas": {
@@ -33,8 +32,6 @@
       }
     },
     "owner": "matos-ed",
-    "plugins": [
-      "expo-build-properties"
-    ]
+    "plugins": ["expo-build-properties"]
   }
 }

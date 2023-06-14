@@ -15,7 +15,7 @@ const useUserInfo = () => {
     enabled: hasToken,
   });
 
-  return { user, isLoading, error, refetch };
+  return { user, isLoading: isLoading && hasToken, error, refetch };
 };
 
 export { useUserInfo };
