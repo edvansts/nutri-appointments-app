@@ -1,12 +1,6 @@
 import { colors } from '@styles/theme';
 import { isDevice } from 'expo-device';
-import {
-  AndroidImportance,
-  getExpoPushTokenAsync,
-  getPermissionsAsync,
-  requestPermissionsAsync,
-  setNotificationChannelAsync,
-} from 'expo-notifications';
+import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
 import { usePostCheckIn } from 'src/api/post-check-in';
 
@@ -15,11 +9,11 @@ export const useSetupPushNotifications = () => {
 
   const setup = async () => {
     if (isDevice) {
-      const { status: existingStatus } = await getPermissionsAsync();
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
 
       if (existingStatus !== 'granted') {
-        const { status } = await requestPermissionsAsync();
+        const { status } = await Notifications.requestPermissionsAsync();
         finalStatus = status;
       }
 
@@ -29,8 +23,7 @@ export const useSetupPushNotifications = () => {
       }
 
       try {
-        const { data: token } = await getExpoPushTokenAsync();
-        console.log(token);
+        const { data: token } = await Notifications.getExpoPushTokenAsync();
 
         checkIn({ pushToken: token });
       } catch (err) {
@@ -39,9 +32,9 @@ export const useSetupPushNotifications = () => {
     }
 
     if (Platform.OS === 'android') {
-      setNotificationChannelAsync('default', {
+      Notifications.setNotificationChannelAsync('default', {
         name: 'default',
-        importance: AndroidImportance.MAX,
+        importance: Notifications.AndroidImportance.MAX,
         vibrationPattern: [0, 250, 250, 250],
         lightColor: colors.greenDarker,
       });

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type AxiosError } from 'axios';
-import useSwrMutation, { type SWRMutationConfiguration } from 'swr/mutation';
 import { CLIENT_API } from '../../../config/axios/api-client';
-import { type ErrorWithMessage, type DefaultData } from '../../../types/api';
+import { type ErrorWithMessage } from '../../../types/api';
 import { type User } from '../../../types/user';
 import { handleThrowApiError } from '@utils/api';
+import { type UseMutationOptions, useMutation } from '@tanstack/react-query';
 
 interface PostLoginParams {
   email: string;
@@ -16,33 +16,26 @@ interface PostLoginResponse {
   token: string;
 }
 
-const url = '/auth/login';
-
-const postLogin = async (url: string, { arg }: DefaultData<PostLoginParams>) => {
-  const data = arg;
-
-  return await CLIENT_API.post<PostLoginResponse>(url, data)
+const postLogin = async (params: PostLoginParams) => {
+  return await CLIENT_API.post<PostLoginResponse>(`/auth/login`, params)
     .then((response) => response.data)
     .catch(handleThrowApiError());
 };
 
 const usePostLogin = (
-  options: SWRMutationConfiguration<
-    PostLoginResponse,
-    ErrorWithMessage,
-    PostLoginParams,
-    string,
-    any
+  options: Omit<
+    UseMutationOptions<PostLoginResponse, ErrorWithMessage, PostLoginParams, string>,
+    'mutationFn'
   > = {}
 ) => {
-  const { trigger, isMutating, data, error, reset } = useSwrMutation(url, postLogin, {
+  const { mutate, isLoading, data, error, reset } = useMutation({
+    mutationFn: postLogin,
     ...options,
-    throwOnError: false,
   });
 
   return {
-    postLogin: trigger,
-    isLoading: isMutating,
+    postLogin: mutate,
+    isLoading,
     data,
     error: error as AxiosError | undefined,
     reset,

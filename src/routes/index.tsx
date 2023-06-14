@@ -13,25 +13,25 @@ interface RootNavigatorProps {
 }
 
 const RootNavigator = ({ onReady }: RootNavigatorProps) => {
-  const { user, isLoading } = useUserInfo();
+  const { user, isLoading, hasToken } = useUserInfo();
 
   const { setup } = useSetupPushNotifications();
 
   const isNutrionist = user?.role === ROLE.NUTRITIONIST;
 
   useEffect(() => {
-    if (user) {
+    if (user && hasToken) {
       setup();
     }
   }, [user]);
 
-  if (isLoading) {
+  if (isLoading && hasToken) {
     return <LoadingScreen />;
   }
 
   return (
     <NavigationContainer onReady={onReady}>
-      {user ? (
+      {user && hasToken ? (
         isNutrionist ? (
           <NutritionistMainStackNavigator />
         ) : (

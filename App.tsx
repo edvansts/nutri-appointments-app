@@ -11,7 +11,7 @@ import { RootNavigator } from './src/routes';
 import { initReactotron } from '@config/reacttotron';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@config/react-query';
-import { setNotificationHandler } from 'expo-notifications';
+import * as Notifications from 'expo-notifications';
 
 dayjs.locale('pt-br');
 initImageCacheDirectory();
@@ -20,7 +20,7 @@ initReactotron();
 
 SplashScreen.preventAutoHideAsync();
 
-setNotificationHandler({
+Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
     shouldPlaySound: true,

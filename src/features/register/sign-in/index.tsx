@@ -15,8 +15,8 @@ import { Form, Header } from './styles';
 import { useRoute } from '@react-navigation/native';
 import { type RegisterRouteProps } from '@routes/register/types';
 import { useTokenStore } from '@store/token';
-import { useSWRConfig } from 'swr';
-import { GET_USER_INFO_URL } from 'src/api/get-user-info';
+import { useQueryClient } from '@tanstack/react-query';
+import { GET_USER_INFO_CACHE } from 'src/api/cache';
 
 const SIGN_IN_SCHEMA = object({
   email: string({ required_error: requiredError }).email(invalidEmail),
@@ -34,7 +34,7 @@ const SignIn = () => {
     resolver: zodResolver(SIGN_IN_SCHEMA),
   });
 
-  const { mutate } = useSWRConfig();
+  const queryClient = useQueryClient();
 
   const { setToken } = useTokenStore();
 
@@ -45,8 +45,8 @@ const SignIn = () => {
   const { signInType } = params;
 
   const { isLoading, postLogin, error } = usePostLogin({
-    onSuccess: async (data) => {
-      await mutate(GET_USER_INFO_URL, null);
+    onSuccess: (data) => {
+      queryClient.removeQueries([GET_USER_INFO_CACHE]);
       setToken(data.token);
     },
   });

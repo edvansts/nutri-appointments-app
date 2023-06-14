@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.matosed.nutriappointments"
+      "package": "com.matosed.nutriappointments",
+      "useNextNotificationsApi": true
     },
     "extra": {
       "eas": {
