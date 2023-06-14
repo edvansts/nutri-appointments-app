@@ -20,11 +20,11 @@
       "bundleIdentifier": "com.matosed.nutriappointments"
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.matosed.nutriappointments",
-      "googleServicesFile": "./envs/google-services.json"
+      "package": "com.matosed.nutriappointments"
     },
     "extra": {
       "eas": {

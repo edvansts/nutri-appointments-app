@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "808400512525",
+    "project_id": "nutri-appointments",
+    "storage_bucket": "nutri-appointments.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808400512525:android:862e6224468ba6ddde1744",
+        "android_client_info": {
+          "package_name": "com.matosed.nutriappointments"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808400512525-as7d47s328vs6hoibf7m639ot345g3na.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAzMubKWLqHAaFjt4HjDPkFXArnLVCy6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808400512525-as7d47s328vs6hoibf7m639ot345g3na.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -28,13 +28,14 @@ export const useSetupPushNotifications = () => {
         return;
       }
 
-      const { data: token } = await getExpoPushTokenAsync();
+      try {
+        const { data: token } = await getExpoPushTokenAsync();
+        console.log(token);
 
-      console.log(token);
-
-      checkIn({ pushToken: token });
-    } else {
-      return;
+        checkIn({ pushToken: token });
+      } catch (err) {
+        alert(err);
+      }
     }
 
     if (Platform.OS === 'android') {
