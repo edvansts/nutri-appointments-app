@@ -5,6 +5,7 @@ import { type NutritionistTabsParamsList } from './tabs/types';
 export type NutritionistMainStackParamList = {
   tabs: NavigatorScreenParams<NutritionistTabsParamsList>;
   patientDetails: { patientId: string };
+  addPatient: undefined;
 };
 
 export type NutritionistMainStackNavigationProps =

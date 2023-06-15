@@ -7,6 +7,8 @@ import { NutritionistTabsNavigator } from './tabs';
 import { BackButton } from '@components/back-button';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 import { Text } from '@styles/components/text';
+import { AddPatient } from '@features/nutritionist/add-patient';
+import { AddPatientButton } from '@components/add-patient-button';
 
 const Stack = createNativeStackNavigator<NutritionistMainStackParamList>();
 
@@ -26,6 +28,7 @@ const NutritionistMainStackNavigator = () => {
         headerStyle: { backgroundColor: colors.greenDarker },
         headerLeft: (props) => <BackButton style={{ marginLeft: -12 }} />,
         headerBackVisible: false,
+        headerRight: () => <AddPatientButton />,
       }}
     >
       <Stack.Screen
@@ -38,6 +41,13 @@ const NutritionistMainStackNavigator = () => {
         component={PatientDetails}
         options={{
           title: 'Detalhes do paciente',
+        }}
+      />
+      <Stack.Screen
+        name="addPatient"
+        component={AddPatient}
+        options={{
+          title: 'Cadastrar Paciente',
         }}
       />
     </Stack.Navigator>
