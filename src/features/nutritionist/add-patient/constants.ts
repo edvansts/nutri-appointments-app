@@ -1,7 +1,18 @@
 import { type SelectOption } from '@components/select';
 import { requiredError } from '@constants/form';
-import { CIVIL_STATUS, ETHNICITY, GENDER, SCHOOLING, SEX, SEX_LABEL } from '@constants/patient';
-import { isValidCPF } from '@utils/validate';
+import {
+  CIVIL_STATUS,
+  CIVIL_STATUS_LABEL,
+  ETHNICITY,
+  ETHNICITY_LABEL,
+  GENDER,
+  GENDER_LABEL,
+  SCHOOLING,
+  SCHOOLING_LABEL,
+  SEX,
+  SEX_LABEL,
+} from '@constants/patient';
+import { PHONE_NUMBER_REGEX, isValidCPF } from '@utils/validate';
 import { date, nativeEnum, object, string } from 'zod';
 
 export enum ADD_PATIENT_FORM_STEPS {
@@ -20,7 +31,10 @@ export const PERSONAL_DATA_FORM_SCHEMA = object({
   nationality: string({ required_error: requiredError }),
   birthdayDate: date({ required_error: requiredError }),
   address: string({ required_error: requiredError }),
-  phoneNumber: string({ required_error: requiredError }),
+  phoneNumber: string({ required_error: requiredError }).regex(
+    PHONE_NUMBER_REGEX,
+    'Número inválido'
+  ),
   cpf: string({ required_error: requiredError }).refine(isValidCPF, 'CPF inválido'),
 });
 
@@ -29,3 +43,33 @@ export const SEX_OPTIONS: Array<SelectOption<SEX>> = Object.values(SEX).map((sex
   value: sex,
   key: sex,
 }));
+
+export const GENDER_OPTIONS: Array<SelectOption<GENDER>> = Object.values(GENDER).map((gender) => ({
+  label: GENDER_LABEL[gender],
+  value: gender,
+  key: gender,
+}));
+
+export const CIVIL_STATUS_OPTIONS: Array<SelectOption<CIVIL_STATUS>> = Object.values(
+  CIVIL_STATUS
+).map((civilStatus) => ({
+  label: CIVIL_STATUS_LABEL[civilStatus],
+  value: civilStatus,
+  key: civilStatus,
+}));
+
+export const ETHNICITY_OPTIONS: Array<SelectOption<ETHNICITY>> = Object.values(ETHNICITY).map(
+  (ethnicity) => ({
+    label: ETHNICITY_LABEL[ethnicity],
+    value: ethnicity,
+    key: ethnicity,
+  })
+);
+
+export const SCHOOLING_OPTIONS: Array<SelectOption<SCHOOLING>> = Object.values(SCHOOLING).map(
+  (schooling) => ({
+    label: SCHOOLING_LABEL[schooling],
+    value: schooling,
+    key: schooling,
+  })
+);

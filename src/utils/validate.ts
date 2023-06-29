@@ -19,3 +19,5 @@ export function isValidCPF(cpf: string) {
 
   return rest(10) === splittedCpf[9] && rest(11) === splittedCpf[10];
 }
+
+export const PHONE_NUMBER_REGEX = /^\s*(\d{2}|\d{0})[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/;

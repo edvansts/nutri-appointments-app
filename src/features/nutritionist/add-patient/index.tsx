@@ -1,4 +1,3 @@
-import { ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { AddPatientContainer } from './styles';
 import { ADD_PATIENT_FORM_STEPS } from './constants';
@@ -11,13 +10,7 @@ const AddPatient = () => {
     PERSONAL_DATA: <PersonalData />,
   };
 
-  return (
-    <AddPatientContainer>
-      <ScrollView contentContainerStyle={{ paddingVertical: 36, paddingHorizontal: 12 }}>
-        {stepsRecord[formStep]}
-      </ScrollView>
-    </AddPatientContainer>
-  );
+  return <AddPatientContainer>{stepsRecord[formStep]}</AddPatientContainer>;
 };
 
 export { AddPatient };

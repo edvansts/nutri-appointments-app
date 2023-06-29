@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { type LayoutChangeEvent, type LayoutRectangle, ScrollView } from 'react-native';
+import { type LayoutChangeEvent, type LayoutRectangle, ScrollView, View } from 'react-native';
 import React, { Fragment, useCallback, useMemo, useState } from 'react';
-import { Divider, Menu, TextInput, TouchableRipple } from 'react-native-paper';
+import { Divider, IconButton, Menu, TouchableRipple } from 'react-native-paper';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 import { colors } from '@styles/theme';
 import { SelectionOption } from './components/select-option';
+import { Text } from '@styles/components/text';
 
 export interface SelectOption<T> {
   label: string;
@@ -73,14 +74,29 @@ function Select<T = any>({ placeholder, options, mode, label, onChange, value }:
           }}
           onLayout={onLayout}
         >
-          <TextInput
-            editable={false}
-            value={activedOption?.label}
-            mode={mode}
-            label={label}
-            placeholder={placeholder}
-            right={<TextInput.Icon icon={isVisible ? 'menu-up' : 'menu-down'} />}
-          />
+          <View
+            style={{
+              borderColor: colors.grayDark,
+              borderWidth: 1,
+              borderStyle: 'solid',
+              borderRadius: 4,
+              paddingLeft: 16,
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Text
+              color={colors.grayDark}
+              variant="bodyLarge"
+              fontWeight={activedOption ? '500' : '400'}
+            >
+              {activedOption?.label || label}
+            </Text>
+
+            <IconButton icon={isVisible ? 'menu-up' : 'menu-down'} size={24} />
+          </View>
         </TouchableRipple>
       }
       style={{
@@ -96,7 +112,7 @@ function Select<T = any>({ placeholder, options, mode, label, onChange, value }:
           maxHeight: 200,
         }}
       >
-        {options.map((option, index) => (
+        {options.map((option) => (
           <Fragment key={option.key || String(option.value)}>
             <SelectionOption
               isActived={isActive(option.value)}

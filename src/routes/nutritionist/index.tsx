@@ -28,7 +28,6 @@ const NutritionistMainStackNavigator = () => {
         headerStyle: { backgroundColor: colors.greenDarker },
         headerLeft: (props) => <BackButton style={{ marginLeft: -12, height: 38, width: 38 }} />,
         headerBackVisible: false,
-        headerRight: () => <AddPatientButton />,
       }}
     >
       <Stack.Screen
@@ -41,6 +40,7 @@ const NutritionistMainStackNavigator = () => {
         component={PatientDetails}
         options={{
           title: 'Detalhes do paciente',
+          headerRight: () => <AddPatientButton />,
         }}
       />
       <Stack.Screen

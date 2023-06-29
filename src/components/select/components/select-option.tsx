@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { type SelectOption } from '..';
-import { Menu, TouchableRipple } from 'react-native-paper';
+import { Menu } from 'react-native-paper';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 
 interface SelectOptionProps<T = any> {
@@ -17,27 +17,21 @@ const SelectionOption = ({ option, isActived, onPress, maxWidth }: SelectOptionP
   const { label } = option;
 
   return (
-    <TouchableRipple
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-      }}
+    <Menu.Item
       onPress={() => {
         onPress(option);
       }}
-    >
-      <Menu.Item
-        titleStyle={{
-          color: isActived ? theme.colors.greenDarker : theme.colors.grayDark,
-        }}
-        title={label}
-        style={{
-          flex: 1,
-          maxWidth,
-          backgroundColor: theme.colors.background,
-        }}
-      />
-    </TouchableRipple>
+      titleStyle={{
+        color: isActived ? theme.colors.greenDarker : theme.colors.grayDark,
+        fontWeight: isActived ? '500' : '400',
+      }}
+      title={label}
+      style={{
+        flex: 1,
+        maxWidth,
+        backgroundColor: theme.colors.background,
+      }}
+    />
   );
 };
 
