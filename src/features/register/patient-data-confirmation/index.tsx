@@ -155,7 +155,10 @@ const PatientDataConfirmation = () => {
             )}
           />
 
-          <Text variant="labelSmall" style={{ textAlign: 'center', color: colors.redPure }}>
+          <Text
+            variant="labelSmall"
+            style={{ textAlign: 'center', color: colors.redPure, marginBottom: 'auto' }}
+          >
             {error?.message}
           </Text>
 
@@ -163,7 +166,7 @@ const PatientDataConfirmation = () => {
             size="md"
             mode="contained"
             textColor={colors.white}
-            style={{ borderRadius: 18, marginTop: 64 }}
+            style={{ borderRadius: 18 }}
             onPress={handleSubmit(handleSubmitForm)}
             disabled={!formState.isDirty || isLoading}
             loading={isLoading}

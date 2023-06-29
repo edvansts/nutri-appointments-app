@@ -15,5 +15,5 @@ export const Form = styled.View`
   display: flex;
   flex-direction: column;
   padding: 24px 16px 32px;
-  height: 70%;
+  min-height: 70%;
 `;

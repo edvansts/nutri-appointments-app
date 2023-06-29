@@ -129,13 +129,14 @@ const SignIn = () => {
             }}
             textAlign="center"
             variant="bodyLarge"
+            style={{ marginBottom: 'auto' }}
           >
             Esqueci a senha
           </Link>
 
           <Button
             textColor={colors.white}
-            margin="auto 0px 0px"
+            style={{ borderRadius: 18 }}
             onPress={handleSubmit(onSubmit)}
             loading={isLoading}
             disabled={isLoading}

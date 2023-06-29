@@ -11,6 +11,7 @@ import { PatientAccessType } from '@features/register/patient-access-type';
 import { PatientDataConfirmation } from '@features/register/patient-data-confirmation';
 import { PatientAccessData } from '@features/register/patient-access-data';
 import { SignIn } from '@features/register/sign-in';
+import { Platform } from 'react-native';
 
 const Stack = createNativeStackNavigator<RegisterStackParamList>();
 
@@ -25,10 +26,10 @@ const RegisterStackNavigator = () => {
         headerLeft: () => (
           <BackButton
             style={{
-              borderRadius: 48 / 2,
-              width: 48,
-              height: 48,
-              marginTop: 16,
+              width: 40,
+              height: 40,
+              borderRadius: 40 / 2,
+              marginTop: Platform.OS === 'android' ? 16 : 4,
             }}
           />
         ),
@@ -40,7 +41,6 @@ const RegisterStackNavigator = () => {
         component={FirstAccess}
         options={{ title: 'Esqueci a senha' }}
       />
-      <Stack.Screen name="signIn" component={SignIn} />
 
       <Stack.Screen name="nutritionistAccessType" component={NutritionistAccessType} />
       <Stack.Screen name="nutritionistDataConfirmation" component={NutritionistDataConfirmation} />
@@ -49,6 +49,8 @@ const RegisterStackNavigator = () => {
       <Stack.Screen name="patientAccessType" component={PatientAccessType} />
       <Stack.Screen name="patientDataConfirmation" component={PatientDataConfirmation} />
       <Stack.Screen name="patientAccessData" component={PatientAccessData} />
+
+      <Stack.Screen name="signIn" component={SignIn} />
     </Stack.Navigator>
   );
 };

@@ -131,7 +131,12 @@ const PatientAccessData = () => {
 
           <Text
             variant="labelSmall"
-            style={{ textAlign: 'center', color: colors.redPure, marginTop: 16 }}
+            style={{
+              textAlign: 'center',
+              color: colors.redPure,
+              marginTop: 16,
+              marginBottom: 'auto',
+            }}
           >
             {error?.message}
           </Text>
@@ -140,7 +145,7 @@ const PatientAccessData = () => {
             size="md"
             mode="contained"
             textColor={colors.white}
-            style={{ borderRadius: 18, marginTop: 'auto' }}
+            style={{ borderRadius: 18 }}
             onPress={handleSubmit(handleSubmitForm)}
             disabled={!formState.isDirty || isLoading}
             loading={isLoading}
