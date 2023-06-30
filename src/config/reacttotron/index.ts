@@ -2,7 +2,7 @@ import { queryClient } from '@config/react-query';
 import Reactotron, { networking, openInEditor } from 'reactotron-react-native';
 import { QueryClientManager, reactotronReactQuery } from 'reactotron-react-query';
 
-const hostname = '192.168.0.9';
+const hostname = '192.168.0.2';
 
 export const initReactotron = () => {
   if (!__DEV__) {

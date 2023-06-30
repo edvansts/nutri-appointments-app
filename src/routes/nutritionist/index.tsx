@@ -8,7 +8,6 @@ import { BackButton } from '@components/back-button';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 import { Text } from '@styles/components/text';
 import { AddPatient } from '@features/nutritionist/add-patient';
-import { AddPatientButton } from '@components/add-patient-button';
 
 const Stack = createNativeStackNavigator<NutritionistMainStackParamList>();
 
@@ -40,7 +39,6 @@ const NutritionistMainStackNavigator = () => {
         component={PatientDetails}
         options={{
           title: 'Detalhes do paciente',
-          headerRight: () => <AddPatientButton />,
         }}
       />
       <Stack.Screen

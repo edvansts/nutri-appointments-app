@@ -12,6 +12,7 @@ import { initReactotron } from '@config/reacttotron';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@config/react-query';
 import * as Notifications from 'expo-notifications';
+import Toast from 'react-native-toast-message';
 
 dayjs.locale('pt-br');
 initImageCacheDirectory();
@@ -52,6 +53,8 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <SwrProvider>
           <RootNavigator onReady={onNavigatorReady} />
+
+          <Toast />
         </SwrProvider>
       </QueryClientProvider>
     </Provider>

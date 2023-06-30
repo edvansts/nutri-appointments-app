@@ -14,6 +14,7 @@ import { Text } from '@styles/components/text';
 import { View } from 'react-native';
 import { BackButton } from '@components/back-button';
 import { MedicalRecords } from '@features/nutritionist/medical-records';
+import { AddPatientButton } from '@components/add-patient-button';
 
 const Tab = createBottomTabNavigator<NutritionistTabsParamsList>();
 
@@ -84,6 +85,7 @@ const NutritionistTabsNavigator = () => {
         component={MedicalRecords}
         options={({ route }) => ({
           title: TABS_RECORD[route.name].label,
+          headerRight: () => <AddPatientButton />,
         })}
       />
       <Tab.Screen
