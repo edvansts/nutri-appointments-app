@@ -6,6 +6,7 @@ export type NutritionistMainStackParamList = {
   tabs: NavigatorScreenParams<NutritionistTabsParamsList>;
   patientDetails: { patientId: string };
   addPatient: undefined;
+  addClinicalEvaluation: { patientId: string };
 };
 
 export type NutritionistMainStackNavigationProps =

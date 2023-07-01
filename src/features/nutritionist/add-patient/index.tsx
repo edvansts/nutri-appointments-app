@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddPatientContainer, Form, PersonalDataContainer, SubmitButton } from './styles';
+import { AddPatientContainer, Form, PersonalDataContainer } from './styles';
 import { Text } from '@styles/components/text';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
@@ -21,6 +21,9 @@ import { MaskedTextInput } from 'react-native-mask-text';
 import { usePostCreatePatient } from '../api/post-create-patient';
 import Toast from 'react-native-toast-message';
 import { useNutritionistMainNavigator } from '@hooks/navigator/use-nutritionist-main-stack-navigator';
+import { SubmitButton } from '../components/submit-button';
+
+const EIGHT_SECONDS = 8000;
 
 const AddPatient = () => {
   const { colors } = useAppTheme();
@@ -32,8 +35,16 @@ const AddPatient = () => {
   const { navigate } = useNutritionistMainNavigator();
 
   const { mutate: createPatient, isLoading } = usePostCreatePatient({
-    onSuccess: () => {
-      Toast.show({ type: 'success', text1: 'Paciente criado com sucesso!' });
+    onSuccess: (patient) => {
+      Toast.show({
+        type: 'success',
+        text1: 'Paciente criado com sucesso!',
+        text2: 'Clique para acessar',
+        onPress: () => {
+          navigate('patientDetails', { patientId: patient.id });
+        },
+        visibilityTime: EIGHT_SECONDS,
+      });
       navigate('tabs', { screen: 'medicalRecords' });
     },
   });
@@ -373,14 +384,10 @@ const AddPatient = () => {
           </PersonalDataContainer>
 
           <SubmitButton
-            color={colors.white}
-            icon="arrow-right"
             visible={formState.isDirty}
             loading={isLoading}
             disabled={isLoading}
-            onPress={handleSubmit(handleSubmitForm, (errors) => {
-              console.log(errors);
-            })}
+            onPress={handleSubmit(handleSubmitForm)}
           />
         </View>
       </TouchableWithoutFeedback>

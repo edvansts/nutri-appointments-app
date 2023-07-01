@@ -76,7 +76,7 @@ const PatientDetails = () => {
 
         <PatientCard patient={patient} />
 
-        <NutritionalData />
+        <NutritionalData patient={patient} />
 
         <PatientImages patientId={patient.id} />
       </ScrollView>

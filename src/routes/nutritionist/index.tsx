@@ -8,6 +8,7 @@ import { BackButton } from '@components/back-button';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 import { Text } from '@styles/components/text';
 import { AddPatient } from '@features/nutritionist/add-patient';
+import { AddClinicalEvaluation } from '@features/nutritionist/add-clinical-evaluation';
 
 const Stack = createNativeStackNavigator<NutritionistMainStackParamList>();
 
@@ -20,7 +21,7 @@ const NutritionistMainStackNavigator = () => {
       screenOptions={{
         headerShown: true,
         headerTitle: ({ children }) => (
-          <Text style={{ marginLeft: 12 }} variant="headlineSmall" color={colors.white}>
+          <Text style={{ marginLeft: 12 }} variant="titleLarge" color={colors.white}>
             {children}
           </Text>
         ),
@@ -46,6 +47,13 @@ const NutritionistMainStackNavigator = () => {
         component={AddPatient}
         options={{
           title: 'Cadastrar Paciente',
+        }}
+      />
+      <Stack.Screen
+        name="addClinicalEvaluation"
+        component={AddClinicalEvaluation}
+        options={{
+          title: 'Cadastrar Av. Clínica',
         }}
       />
     </Stack.Navigator>

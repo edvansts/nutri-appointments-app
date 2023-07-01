@@ -7,6 +7,7 @@ import { useAppTheme } from '@hooks/theme/use-app-theme';
 import { View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { upperCaseFirstLetter } from '@utils/transform';
+import { getAge } from '@utils/date';
 
 interface AppointmentCardProps {
   appointment: Appointment;
@@ -17,9 +18,7 @@ const AppointmentCard = ({ appointment, marginVertical }: AppointmentCardProps) 
   const { appointmentDate, patient } = appointment;
 
   const patientName = patient?.person?.name || '';
-  const patientAge = patient?.person?.birthdayDate
-    ? Math.abs(dayjs(patient.person.birthdayDate).diff(new Date(), 'year'))
-    : '';
+  const patientAge = patient?.person?.birthdayDate ? getAge(patient.person.birthdayDate) : '';
 
   const { colors } = useAppTheme();
 

@@ -1,8 +1,6 @@
 import { colors } from '@styles/theme';
 import styled from 'styled-components/native';
 
-export const PersonalDataContainer = styled.ScrollView``;
-
 export const Form = styled.View`
   display: flex;
   flex-direction: column;

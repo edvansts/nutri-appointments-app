@@ -1,8 +1,8 @@
 import { requiredError } from '@constants/form';
 import { ALCOHOLIC_STATUS } from '@constants/patient';
-import { boolean, nativeEnum, object, string } from 'zod';
+import { type TypeOf, boolean, nativeEnum, object, string } from 'zod';
 
-export enum ADD_PATIENT_FORM_STEPS {
+export enum ADD_CLINICAL_EVALUATION_STEPS {
   MEDICATIONS_AND_ADDICTIONS = 'MEDICATIONS_AND_ADDICTIONS',
   LIFESTYLE = 'LIFESTYLE',
   FAMILY_BACKGROUND = 'FAMILY_BACKGROUND',
@@ -37,3 +37,7 @@ export const MEDICATIONS_AND_ADDICTIONS_FORM_SCHEMA = object({
       path: ['alcoholicDescription'],
     }
   );
+
+export type MedicationsAndAddictionsFormType = TypeOf<
+  typeof MEDICATIONS_AND_ADDICTIONS_FORM_SCHEMA
+>;

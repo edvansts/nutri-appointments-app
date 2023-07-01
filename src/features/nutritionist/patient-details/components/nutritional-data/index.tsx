@@ -12,9 +12,17 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import NutritionIcon from '@assets/icon/nutrition.svg';
 import PrescriptionsIcon from '@assets/icon/prescriptions.svg';
 import BodyFatIcon from '@assets/icon/body_fat.svg';
+import { useNutritionistMainNavigator } from '@hooks/navigator/use-nutritionist-main-stack-navigator';
+import { type Patient } from 'src/types/patient';
 
-const NutritionalData = () => {
+interface NutritionalDataProps {
+  patient: Patient;
+}
+
+const NutritionalData = ({ patient }: NutritionalDataProps) => {
   const { colors } = useAppTheme();
+
+  const { navigate } = useNutritionistMainNavigator();
 
   return (
     <NutritioninalDataContainer>
@@ -23,7 +31,12 @@ const NutritionalData = () => {
       </Text>
 
       <NutritionalDataCardsList>
-        <NutritionalDataCard activeOpacity={0.75}>
+        <NutritionalDataCard
+          activeOpacity={0.75}
+          onPress={() => {
+            navigate('addClinicalEvaluation', { patientId: patient.id });
+          }}
+        >
           <FontAwesome
             name="stethoscope"
             size={40}

@@ -4,9 +4,9 @@ import { PatientCardContainer, PatientInfo } from './styles';
 import { useAssets } from 'expo-asset';
 import { type Patient } from 'src/types/patient';
 import { Text } from '@styles/components/text';
-import dayjs from 'dayjs';
 import { SEX_LABEL } from '@constants/patient';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
+import { getAge } from '@utils/date';
 
 interface PatientCardProps {
   patient: Patient;
@@ -25,7 +25,7 @@ const PatientCard = ({ patient, marginVertical, onPress }: PatientCardProps) => 
 
   const { name = '', birthdayDate } = person || {};
 
-  const patientAge = birthdayDate ? Math.abs(dayjs(birthdayDate).diff(new Date(), 'year')) : '';
+  const patientAge = birthdayDate ? getAge(birthdayDate) : '';
 
   return (
     <PatientCardContainer
