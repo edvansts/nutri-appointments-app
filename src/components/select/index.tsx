@@ -58,73 +58,86 @@ function Select<T = any>({ placeholder, options, mode, label, onChange, value }:
   );
 
   return (
-    <Menu
-      visible={isVisible}
-      onDismiss={() => {
-        setIsVisible(false);
-      }}
-      theme={theme}
-      contentStyle={{
-        backgroundColor: colors.background,
-      }}
-      anchor={
-        <TouchableRipple
-          onPress={() => {
-            setIsVisible(true);
-          }}
-          onLayout={onLayout}
+    <View>
+      {!!label && (
+        <Text
+          variant="bodyMedium"
+          color={colors.black}
+          fontWeight="500"
+          style={{ marginBottom: 8 }}
         >
-          <View
-            style={{
-              borderColor: colors.grayDark,
-              borderWidth: 1,
-              borderStyle: 'solid',
-              borderRadius: 4,
-              paddingLeft: 16,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Text
-              color={colors.grayDark}
-              variant="bodyLarge"
-              fontWeight={activedOption ? '500' : '400'}
-            >
-              {activedOption?.label || label}
-            </Text>
+          {label}
+        </Text>
+      )}
 
-            <IconButton icon={isVisible ? 'menu-up' : 'menu-down'} size={24} />
-          </View>
-        </TouchableRipple>
-      }
-      style={{
-        maxWidth: inputLayout?.width,
-        width: inputLayout?.width,
-        marginTop: inputLayout?.height,
-        backgroundColor: colors.background,
-      }}
-    >
-      <ScrollView
-        bounces={false}
+      <Menu
+        visible={isVisible}
+        onDismiss={() => {
+          setIsVisible(false);
+        }}
+        theme={theme}
+        contentStyle={{
+          backgroundColor: colors.background,
+        }}
+        anchor={
+          <TouchableRipple
+            onPress={() => {
+              setIsVisible(true);
+            }}
+            onLayout={onLayout}
+          >
+            <View
+              style={{
+                borderColor: colors.grayDark,
+                borderWidth: 1,
+                borderStyle: 'solid',
+                borderRadius: 4,
+                paddingLeft: 16,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Text
+                color={colors.grayDark}
+                variant="bodyLarge"
+                fontWeight={activedOption ? '500' : '400'}
+              >
+                {activedOption?.label || placeholder}
+              </Text>
+
+              <IconButton icon={isVisible ? 'menu-up' : 'menu-down'} size={24} />
+            </View>
+          </TouchableRipple>
+        }
         style={{
-          maxHeight: 200,
+          maxWidth: inputLayout?.width,
+          width: inputLayout?.width,
+          marginTop: inputLayout?.height,
+          backgroundColor: colors.background,
         }}
       >
-        {options.map((option) => (
-          <Fragment key={option.key || String(option.value)}>
-            <SelectionOption
-              isActived={isActive(option.value)}
-              onPress={onOptionPress}
-              option={option}
-              maxWidth={inputLayout.width}
-            />
-            <Divider />
-          </Fragment>
-        ))}
-      </ScrollView>
-    </Menu>
+        <ScrollView
+          bounces={false}
+          style={{
+            maxHeight: 200,
+          }}
+        >
+          {options.map((option) => (
+            <Fragment key={option.key || String(option.value)}>
+              <SelectionOption
+                isActived={isActive(option.value)}
+                onPress={onOptionPress}
+                option={option}
+                maxWidth={inputLayout.width}
+              />
+              <Divider />
+            </Fragment>
+          ))}
+        </ScrollView>
+      </Menu>
+    </View>
   );
 }
 

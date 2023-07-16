@@ -96,6 +96,14 @@ export enum EATING_BEHAVIOR {
   LONG_FASTS = 'LONG_FASTS',
 }
 
+export const EATING_BEHAVIOR_LABEL: Record<EATING_BEHAVIOR, string> = {
+  HYPERPHAGIC: 'Hiperfágico',
+  NIBBLER: 'Beliscador',
+  NIGHT_HUNGER: 'Fome noturna',
+  EMOTIONAL: 'Emocional',
+  LONG_FASTS: 'Longos jejuns seguidos de refeições hipercalóricas',
+};
+
 export enum ENVIRONMENT {
   CALM = 'CALM',
   ACCOMPANIED = 'ACCOMPANIED',
@@ -103,12 +111,26 @@ export enum ENVIRONMENT {
   ALONE = 'ALONE',
 }
 
+export const ENVIRONMENT_LABEL: Record<ENVIRONMENT, string> = {
+  CALM: 'Calmo e silencioso',
+  ACCOMPANIED: 'Acompanhado',
+  AGITATED: 'Agitado, com rádio ou tv ligados',
+  ALONE: 'Sozinho',
+};
+
 export enum EATING_PLACE {
   HOUSE = 'HOUSE',
   WORK = 'WORK',
   RESTAURANT = 'RESTAURANT',
   OTHER_PEOPLE_HOUSE = 'OTHER_PEOPLE_HOUSE',
 }
+
+export const EATING_PLACE_LABEL: Record<EATING_PLACE, string> = {
+  HOUSE: 'Casa',
+  WORK: 'Trabalho',
+  RESTAURANT: 'Restaurante',
+  OTHER_PEOPLE_HOUSE: 'Na casa de outra pessoa',
+};
 
 export enum FAMILIAR_BACKGROUND {
   SAH = 'SAH',

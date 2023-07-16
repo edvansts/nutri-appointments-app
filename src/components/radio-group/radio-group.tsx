@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex } from '@components/flex';
-import { RadioButton } from 'react-native-paper';
+import { HelperText, RadioButton } from 'react-native-paper';
 import { Text } from '@styles/components/text';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 
@@ -14,9 +14,10 @@ interface RadioGroupProps {
   value: string;
   onChange: (newValue: string) => void;
   options: RadioGroupOption[];
+  errorMessage?: string;
 }
 
-const RadioGroup = ({ onChange, value, label, options }: RadioGroupProps) => {
+const RadioGroup = ({ onChange, value, label, options, errorMessage }: RadioGroupProps) => {
   const { colors } = useAppTheme();
 
   return (
@@ -39,6 +40,8 @@ const RadioGroup = ({ onChange, value, label, options }: RadioGroupProps) => {
           );
         })}
       </RadioButton.Group>
+
+      {!!errorMessage && <HelperText type="error">{errorMessage}</HelperText>}
     </Flex>
   );
 };
