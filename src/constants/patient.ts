@@ -144,15 +144,25 @@ export enum FAMILIAR_BACKGROUND {
   OTHER = 'OTHER',
 }
 
+export const FAMILIAR_BACKGROUND_LABEL: Record<FAMILIAR_BACKGROUND, string> = {
+  SAH: 'HAS',
+  DM: 'DM',
+  OBESITY: 'Obesidade',
+  CARDIOPATHIES: 'Cardiopatias',
+  CANCER: 'Câncer',
+  AMI: 'IAM',
+  THYROID_DISEASES: 'Doenças tireoidianas',
+  KIDNEY_DISEASES: 'Doenças renais',
+  OTHER: 'Outras',
+};
+
 export enum CLINICAL_HISTORY {
   SAH = 'SAH',
   DM = 'DM',
   DYSLIPIDEMIA = 'DYSLIPIDEMIA',
-  CVD = 'CVD',
-  OBESITY = 'OBESITY',
+  CVD = 'DCV',
   CARDIOPATHIES = 'CARDIOPATHIES',
   CANCER = 'CANCER',
-  AMI = 'AMI',
   THYROID_DISEASES = 'THYROID_DISEASES',
   KIDNEY_DISEASES = 'KIDNEY_DISEASES',
   GASTRITIS = 'GASTRITIS',
@@ -161,6 +171,22 @@ export enum CLINICAL_HISTORY {
   OVERWEIGHT = 'OVERWEIGHT',
   OTHER = 'OTHER',
 }
+
+export const CLINICAL_HISTORY_LABEL: Record<CLINICAL_HISTORY, string> = {
+  SAH: 'HAS',
+  DM: 'DM',
+  DYSLIPIDEMIA: 'Dislipdemia',
+  CARDIOPATHIES: 'Cardiopatias',
+  CANCER: 'Câncer',
+  DCV: 'DCV',
+  THYROID_DISEASES: 'Doenças tireoidianas',
+  KIDNEY_DISEASES: 'Doenças renais',
+  GASTRITIS: 'Gastrite',
+  GERD: 'DRGE',
+  HEPATIC_STEATOSIS: 'Esteatose hepática',
+  OVERWEIGHT: 'Excesso de peso',
+  OTHER: 'Outras',
+};
 
 export enum SYMPTOM {
   CONSTIPATION = 'CONSTIPATION',
