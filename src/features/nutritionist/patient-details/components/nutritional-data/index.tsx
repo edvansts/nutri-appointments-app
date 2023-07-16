@@ -31,6 +31,26 @@ const NutritionalData = ({ patient }: NutritionalDataProps) => {
       </Text>
 
       <NutritionalDataCardsList>
+        <NutritionalDataCard activeOpacity={0.75}>
+          <BodyFatIcon color={colors.greenDarker} style={{ marginBottom: 16 }} />
+          <Text variant="bodySmall" textAlign="center" color={colors.grayDark}>
+            Avaliação Antropométrica
+          </Text>
+        </NutritionalDataCard>
+
+        <NutritionalDataCard activeOpacity={0.75}>
+          <MaterialIcons
+            name="science"
+            size={40}
+            color={colors.greenDarker}
+            style={{ marginBottom: 16 }}
+          />
+
+          <Text variant="bodySmall" textAlign="center" color={colors.grayDark}>
+            Avaliação Bioquímica
+          </Text>
+        </NutritionalDataCard>
+
         <NutritionalDataCard
           activeOpacity={0.75}
           onPress={() => {
@@ -45,20 +65,7 @@ const NutritionalData = ({ patient }: NutritionalDataProps) => {
           />
 
           <Text variant="bodySmall" textAlign="center" color={colors.grayDark}>
-            Dados clínicos e ambientais
-          </Text>
-        </NutritionalDataCard>
-
-        <NutritionalDataCard activeOpacity={0.75}>
-          <MaterialIcons
-            name="directions-run"
-            size={40}
-            color={colors.greenDarker}
-            style={{ marginBottom: 16 }}
-          />
-
-          <Text variant="bodySmall" textAlign="center" color={colors.grayDark}>
-            Exame Físico
+            Avaliação Clínica
           </Text>
         </NutritionalDataCard>
 
@@ -71,7 +78,25 @@ const NutritionalData = ({ patient }: NutritionalDataProps) => {
         </NutritionalDataCard>
 
         <NutritionalDataCard activeOpacity={0.75}>
-          <PrescriptionsIcon color={colors.greenDarker} style={{ marginBottom: 16 }} />
+          <MaterialIcons
+            name="directions-run"
+            size={40}
+            color={colors.greenDarker}
+            style={{ marginBottom: 16 }}
+          />
+
+          <Text variant="bodySmall" textAlign="center" color={colors.grayDark}>
+            Avaliação Física
+          </Text>
+        </NutritionalDataCard>
+
+        <NutritionalDataCard activeOpacity={0.75}>
+          <MaterialIcons
+            name="description"
+            size={40}
+            color={colors.greenDarker}
+            style={{ marginBottom: 16 }}
+          />
 
           <Text variant="bodySmall" textAlign="center" color={colors.grayDark}>
             Diagnóstico Nutricional
@@ -79,9 +104,10 @@ const NutritionalData = ({ patient }: NutritionalDataProps) => {
         </NutritionalDataCard>
 
         <NutritionalDataCard activeOpacity={0.75}>
-          <BodyFatIcon color={colors.greenDarker} style={{ marginBottom: 16 }} />
+          <PrescriptionsIcon color={colors.greenDarker} style={{ marginBottom: 16 }} />
+
           <Text variant="bodySmall" textAlign="center" color={colors.grayDark}>
-            Avaliação Antropométrica
+            Orientações Nutricionais
           </Text>
         </NutritionalDataCard>
 

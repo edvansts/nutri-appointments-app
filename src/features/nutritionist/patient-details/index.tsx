@@ -8,10 +8,10 @@ import { type NutritionistMainRouteProps } from '@routes/nutritionist/types';
 import { useGetPatientById } from '../api/use-get-patient-by-id';
 import { HelperText } from 'react-native-paper';
 import { Loader } from '@components/loader';
-import { PatientCard } from '../medical-records/components/patient-card';
-import { NutritionalData } from './components/nutritional-data';
 import { RefreshControl } from '@components/refresh-control';
 import { PatientImages } from './components/patient-images';
+import { PatientCard } from '../medical-records/components/patient-card';
+import { NutritionalData } from './components/nutritional-data';
 
 const PatientDetails = () => {
   const navigation = useNutritionistTabsNavigator();
