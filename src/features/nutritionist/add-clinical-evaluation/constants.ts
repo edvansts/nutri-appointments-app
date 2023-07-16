@@ -41,3 +41,20 @@ export const MEDICATIONS_AND_ADDICTIONS_FORM_SCHEMA = object({
 export type MedicationsAndAddictionsFormType = TypeOf<
   typeof MEDICATIONS_AND_ADDICTIONS_FORM_SCHEMA
 >;
+
+export const LIFESTYLE_FORM_SCHEMA = object({
+  hasPhysicalActivityPractice: boolean(),
+  physicalActivitiesPracticed: string().optional(),
+  timePracticed: string().optional(),
+  weekTimesPracticed: string().optional(),
+
+  spareTimeDescription: string().optional(),
+}).refine(
+  (data) => (data.hasPhysicalActivityPractice ? !!data.hasPhysicalActivityPractice : true),
+  {
+    message: requiredError,
+    path: ['physicalActivitiesPracticed', 'timePracticed', 'weekTimesPracticed'],
+  }
+);
+
+export type LifestyleFormType = TypeOf<typeof LIFESTYLE_FORM_SCHEMA>;

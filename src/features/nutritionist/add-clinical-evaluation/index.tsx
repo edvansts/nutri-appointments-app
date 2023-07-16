@@ -5,6 +5,7 @@ import { MedicationsAndAddictions } from './components/medications-and-addiction
 import { useRoute } from '@react-navigation/native';
 import { useNutritionistMainNavigator } from '@hooks/navigator/use-nutritionist-main-stack-navigator';
 import { type NutritionistMainRouteProps } from '@routes/nutritionist/types';
+import { Lifestyle } from './components/lifestyle';
 
 const AddClinicalEvaluation = () => {
   const [formStep, setFormStep] = useState(
@@ -20,12 +21,21 @@ const AddClinicalEvaluation = () => {
     MEDICATIONS_AND_ADDICTIONS: (
       <MedicationsAndAddictions
         goToNextStep={() => {
+          setFormStep(ADD_CLINICAL_EVALUATION_STEPS.LIFESTYLE);
+        }}
+      />
+    ),
+    LIFESTYLE: (
+      <Lifestyle
+        goToNextStep={() => {
           setFormStep(ADD_CLINICAL_EVALUATION_STEPS.FAMILY_BACKGROUND);
+        }}
+        goBack={() => {
+          setFormStep(ADD_CLINICAL_EVALUATION_STEPS.MEDICATIONS_AND_ADDICTIONS);
         }}
       />
     ),
     FAMILY_BACKGROUND: <></>,
-    LIFESTYLE: <></>,
   };
 
   return <AddClinicalEvaluationContainer>{stepsRecord[formStep]}</AddClinicalEvaluationContainer>;

@@ -8,13 +8,13 @@ type SizeType = 'md' | 'lg' | 'sm';
 
 const BUTTON_TYPES_BACKGROUND: Record<ButtonType, string> = {
   primary: colors.primary,
-  secondary: colors.secondary,
+  secondary: colors.white,
   transparent: 'transparent',
 };
 
 const BUTTON_TYPES_COLOR: Record<ButtonType, string> = {
   primary: colors.white,
-  secondary: colors.white,
+  secondary: colors.greenDarker,
   transparent: colors.greenDarker,
 };
 
@@ -39,4 +39,7 @@ export const Button = styled(PaperButton)<{
   ${({ mb }) => (mb ? `margin: ${mb}` : '')};
   height: ${({ size = 'md', height }) => height || SIZE_TYPES_RECORD[size]};
   width: ${({ width = 'auto' }) => width};
+
+  ${({ type = 'primary' }) =>
+    type === 'secondary' ? `border: 1px solid ${colors.greenDarker}` : ''}
 `;
