@@ -1,4 +1,3 @@
-import { type RadioGroupOption } from '@components/radio-group';
 import { type SelectOption } from '@components/select';
 import {
   EATING_BEHAVIOR,
@@ -8,14 +7,16 @@ import {
   ENVIRONMENT,
   ENVIRONMENT_LABEL,
 } from '@constants/patient';
+import { type GroupOption } from 'src/types/utils';
 
-export const EATING_BEHAVIOR_OPTIONS: RadioGroupOption[] = Object.values(EATING_BEHAVIOR).map(
+export const EATING_BEHAVIOR_OPTIONS: GroupOption[] = Object.values(EATING_BEHAVIOR).map(
   (eatingBehavior) => ({ label: EATING_BEHAVIOR_LABEL[eatingBehavior], value: eatingBehavior })
 );
 
-export const ENVIRONMENT_OPTIONS: RadioGroupOption[] = Object.values(ENVIRONMENT).map(
-  (environment) => ({ label: ENVIRONMENT_LABEL[environment], value: environment })
-);
+export const ENVIRONMENT_OPTIONS: GroupOption[] = Object.values(ENVIRONMENT).map((environment) => ({
+  label: ENVIRONMENT_LABEL[environment],
+  value: environment,
+}));
 
 export const EATING_PLACE_OPTIONS: Array<SelectOption<EATING_PLACE>> = Object.values(
   EATING_PLACE

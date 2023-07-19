@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import { AddClinicalEvaluationContainer } from './styles';
 import { ADD_CLINICAL_EVALUATION_STEPS } from './constants';
-import { MedicationsAndAddictions } from './components/medications-and-addictions';
+import { MedicationsAndAddictionsForm } from './components/medications-and-addictions-form';
 import { useFocusEffect, useRoute } from '@react-navigation/native';
 import { useNutritionistMainNavigator } from '@hooks/navigator/use-nutritionist-main-stack-navigator';
 import { type NutritionistMainRouteProps } from '@routes/nutritionist/types';
-import { Lifestyle } from './components/lifestyle';
-import { Feeding } from './components/feeding';
+import { LifestyleForm } from './components/lifestyle';
+import { FeedingForm } from './components/feeding-form';
 import { useAddClinicalEvaluationStore } from './store/add-clinical-evaluation';
+import { FamilyBackgroundForm } from './components/family-background-form';
 
 const AddClinicalEvaluation = () => {
   const [formStep, setFormStep] = useState(
@@ -31,14 +32,14 @@ const AddClinicalEvaluation = () => {
 
   const stepsRecord: Record<ADD_CLINICAL_EVALUATION_STEPS, JSX.Element> = {
     MEDICATIONS_AND_ADDICTIONS: (
-      <MedicationsAndAddictions
+      <MedicationsAndAddictionsForm
         goToNextStep={() => {
           setFormStep(ADD_CLINICAL_EVALUATION_STEPS.LIFESTYLE);
         }}
       />
     ),
     LIFESTYLE: (
-      <Lifestyle
+      <LifestyleForm
         goToNextStep={() => {
           setFormStep(ADD_CLINICAL_EVALUATION_STEPS.FEEDING);
         }}
@@ -48,7 +49,7 @@ const AddClinicalEvaluation = () => {
       />
     ),
     FEEDING: (
-      <Feeding
+      <FeedingForm
         goToNextStep={() => {
           setFormStep(ADD_CLINICAL_EVALUATION_STEPS.FAMILY_BACKGROUND);
         }}
@@ -57,7 +58,17 @@ const AddClinicalEvaluation = () => {
         }}
       />
     ),
-    FAMILY_BACKGROUND: <></>,
+    FAMILY_BACKGROUND: (
+      <FamilyBackgroundForm
+        onSubmit={() => {
+          console.log('finalized');
+        }}
+        isSubmitting={false}
+        goBack={() => {
+          setFormStep(ADD_CLINICAL_EVALUATION_STEPS.FEEDING);
+        }}
+      />
+    ),
   };
 
   return <AddClinicalEvaluationContainer>{stepsRecord[formStep]}</AddClinicalEvaluationContainer>;

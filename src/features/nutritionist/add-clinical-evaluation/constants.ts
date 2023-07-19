@@ -1,6 +1,14 @@
 import { requiredError } from '@constants/form';
-import { ALCOHOLIC_STATUS, EATING_BEHAVIOR, EATING_PLACE, ENVIRONMENT } from '@constants/patient';
-import { type TypeOf, boolean, nativeEnum, object, string } from 'zod';
+import {
+  ALCOHOLIC_STATUS,
+  CLINICAL_HISTORY,
+  EATING_BEHAVIOR,
+  EATING_PLACE,
+  ENVIRONMENT,
+  FAMILIAR_BACKGROUND,
+  SYMPTOM,
+} from '@constants/patient';
+import { type TypeOf, boolean, nativeEnum, object, string, array } from 'zod';
 
 export enum ADD_CLINICAL_EVALUATION_STEPS {
   MEDICATIONS_AND_ADDICTIONS = 'MEDICATIONS_AND_ADDICTIONS',
@@ -72,3 +80,22 @@ export const FEEDING_FORM_SCHEMA = object({
 });
 
 export type FeedingFormType = TypeOf<typeof FEEDING_FORM_SCHEMA>;
+
+export const FAMILY_BACKGROUND_FORM_SCHEMA = object({
+  familiarBackgroundDiseases: array(nativeEnum(FAMILIAR_BACKGROUND)).min(1, {
+    message: requiredError,
+  }),
+  otherFamiliarBackgroudDiseases: string().optional(),
+
+  clinicalHistoryDiseases: array(nativeEnum(CLINICAL_HISTORY)).min(1, {
+    message: requiredError,
+  }),
+  otherClinicalHistoryDiseases: string().optional(),
+
+  symptomns: array(nativeEnum(SYMPTOM)).min(1, {
+    message: requiredError,
+  }),
+  otherSymptomns: string().optional(),
+});
+
+export type FamilyBackgroundFormType = TypeOf<typeof FAMILY_BACKGROUND_FORM_SCHEMA>;

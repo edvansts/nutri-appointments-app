@@ -13,13 +13,13 @@ import { Button } from '@styles/components/button';
 import { SubmitButton } from '@features/nutritionist/components/submit-button';
 import { Select } from '@components/select';
 
-interface FeedingProps {
+interface FeedingFormProps {
   goToNextStep: () => void;
   goBack: () => void;
 }
 
-const Feeding = ({ goBack, goToNextStep }: FeedingProps) => {
-  const setFeeding = useAddClinicalEvaluationStore((state) => state.setFeeding);
+const FeedingForm = ({ goBack, goToNextStep }: FeedingFormProps) => {
+  const setFeedingFormData = useAddClinicalEvaluationStore((state) => state.setFeedingFormData);
   const savedData = useAddClinicalEvaluationStore((state) => state.FEEDING);
 
   const { formState, handleSubmit, control } = useForm<FeedingFormType>({
@@ -30,8 +30,8 @@ const Feeding = ({ goBack, goToNextStep }: FeedingProps) => {
 
   const { colors } = useAppTheme();
 
-  const handleSubmitLifestyleForm: SubmitHandler<FeedingFormType> = (data) => {
-    setFeeding(data);
+  const handleSubmitFeedingForm: SubmitHandler<FeedingFormType> = (data) => {
+    setFeedingFormData(data);
     goToNextStep();
   };
 
@@ -208,11 +208,11 @@ const Feeding = ({ goBack, goToNextStep }: FeedingProps) => {
         <SubmitButton
           loading={isValidating}
           disabled={isValidating}
-          onPress={handleSubmit(handleSubmitLifestyleForm)}
+          onPress={handleSubmit(handleSubmitFeedingForm)}
         />
       </View>
     </TouchableWithoutFeedback>
   );
 };
 
-export { Feeding };
+export { FeedingForm };

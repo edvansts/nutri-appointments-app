@@ -3,17 +3,13 @@ import { Flex } from '@components/flex';
 import { HelperText, RadioButton } from 'react-native-paper';
 import { Text } from '@styles/components/text';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
-
-export interface RadioGroupOption {
-  label: string;
-  value: string;
-}
+import { type GroupOption } from 'src/types/utils';
 
 interface RadioGroupProps {
   label?: string;
   value: string;
   onChange: (newValue: string) => void;
-  options: RadioGroupOption[];
+  options: GroupOption[];
   errorMessage?: string;
 }
 

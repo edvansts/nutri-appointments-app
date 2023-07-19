@@ -145,12 +145,12 @@ export enum FAMILIAR_BACKGROUND {
 }
 
 export const FAMILIAR_BACKGROUND_LABEL: Record<FAMILIAR_BACKGROUND, string> = {
-  SAH: 'HAS',
-  DM: 'DM',
+  SAH: 'Hipertensão Arterial Sistêmica (HAS)',
+  DM: 'Diabetes Mellitus (DM)',
   OBESITY: 'Obesidade',
   CARDIOPATHIES: 'Cardiopatias',
   CANCER: 'Câncer',
-  AMI: 'IAM',
+  AMI: 'Infarto agudo do miocárdio (IAM)',
   THYROID_DISEASES: 'Doenças tireoidianas',
   KIDNEY_DISEASES: 'Doenças renais',
   OTHER: 'Outras',
@@ -173,16 +173,16 @@ export enum CLINICAL_HISTORY {
 }
 
 export const CLINICAL_HISTORY_LABEL: Record<CLINICAL_HISTORY, string> = {
-  SAH: 'HAS',
-  DM: 'DM',
+  SAH: 'Hipertensão Arterial Sistêmica (HAS)',
+  DM: 'Diabetes Mellitus (DM)',
   DYSLIPIDEMIA: 'Dislipdemia',
   CARDIOPATHIES: 'Cardiopatias',
   CANCER: 'Câncer',
-  DCV: 'DCV',
+  DCV: 'Doenças cardiovasculares (DCV)',
   THYROID_DISEASES: 'Doenças tireoidianas',
   KIDNEY_DISEASES: 'Doenças renais',
   GASTRITIS: 'Gastrite',
-  GERD: 'DRGE',
+  GERD: 'Doença do refluxo gastroesofágico (DRGE)',
   HEPATIC_STEATOSIS: 'Esteatose hepática',
   OVERWEIGHT: 'Excesso de peso',
   OTHER: 'Outras',
@@ -197,7 +197,20 @@ export enum SYMPTOM {
   VOMITING = 'VOMITING',
   CHOKING = 'CHOKING',
   DIFFICULTY_CHEWING = 'DIFFICULTY_CHEWING',
+  OTHER = 'OTHER',
 }
+
+export const SYMPTOM_LABEL: Record<SYMPTOM, string> = {
+  CONSTIPATION: 'Constipação',
+  HEARTBURN: 'Queimadura do coração',
+  DIARRHEA: 'Diarréia',
+  FLATULENCE: 'Flatulência',
+  NAUSEA: 'Náusea',
+  VOMITING: 'Vômito',
+  CHOKING: 'Engasgamento',
+  DIFFICULTY_CHEWING: 'Dificuldade de mastigar',
+  OTHER: 'Outros',
+};
 
 export enum WEIGHT_GAIN_REASON {
   CHILDHOOD = 'CHILDHOOD',

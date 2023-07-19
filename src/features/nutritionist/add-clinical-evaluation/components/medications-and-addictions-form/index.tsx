@@ -14,13 +14,13 @@ import { useAppTheme } from '@hooks/theme/use-app-theme';
 import { ALCOHOLIC_STATUS } from '@constants/patient';
 import { useAddClinicalEvaluationStore } from '../../store/add-clinical-evaluation';
 
-interface MedicationsAndAddictionsProps {
+interface MedicationsAndAddictionsFormProps {
   goToNextStep: () => void;
 }
 
-const MedicationsAndAddictions = ({ goToNextStep }: MedicationsAndAddictionsProps) => {
-  const setMedicationsAndAddictions = useAddClinicalEvaluationStore(
-    (state) => state.setMedicationsAndAddictions
+const MedicationsAndAddictionsForm = ({ goToNextStep }: MedicationsAndAddictionsFormProps) => {
+  const setMedicationsAndAddictionsFormData = useAddClinicalEvaluationStore(
+    (state) => state.setMedicationsAndAddictionsFormData
   );
   const savedData = useAddClinicalEvaluationStore((state) => state.MEDICATIONS_AND_ADDICTIONS);
 
@@ -42,7 +42,7 @@ const MedicationsAndAddictions = ({ goToNextStep }: MedicationsAndAddictionsProp
   const handleSubmitMedicationsAndAddictionForm: SubmitHandler<MedicationsAndAddictionsFormType> = (
     data
   ) => {
-    setMedicationsAndAddictions(data);
+    setMedicationsAndAddictionsFormData(data);
     goToNextStep();
   };
 
@@ -242,4 +242,4 @@ const MedicationsAndAddictions = ({ goToNextStep }: MedicationsAndAddictionsProp
   );
 };
 
-export { MedicationsAndAddictions };
+export { MedicationsAndAddictionsForm };

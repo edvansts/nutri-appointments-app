@@ -10,13 +10,13 @@ import { SubmitButton } from '@features/nutritionist/components/submit-button';
 import { useAddClinicalEvaluationStore } from '../../store/add-clinical-evaluation';
 import { Button } from '@styles/components/button';
 
-interface LifestyleProps {
+interface LifestyleFormProps {
   goToNextStep: () => void;
   goBack: () => void;
 }
 
-const Lifestyle = ({ goToNextStep, goBack }: LifestyleProps) => {
-  const setLifestyle = useAddClinicalEvaluationStore((state) => state.setLifestyle);
+const LifestyleForm = ({ goToNextStep, goBack }: LifestyleFormProps) => {
+  const setLifestyleFormData = useAddClinicalEvaluationStore((state) => state.setLifestyleFormData);
   const savedData = useAddClinicalEvaluationStore((state) => state.LIFESTYLE);
 
   const { formState, handleSubmit, control, watch } = useForm<LifestyleFormType>({
@@ -32,7 +32,7 @@ const Lifestyle = ({ goToNextStep, goBack }: LifestyleProps) => {
   });
 
   const handleSubmitLifestyleForm: SubmitHandler<LifestyleFormType> = (data) => {
-    setLifestyle(data);
+    setLifestyleFormData(data);
     goToNextStep();
   };
 
@@ -165,4 +165,4 @@ const Lifestyle = ({ goToNextStep, goBack }: LifestyleProps) => {
   );
 };
 
-export { Lifestyle };
+export { LifestyleForm };

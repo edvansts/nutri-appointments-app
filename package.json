@@ -71,7 +71,7 @@
     "react-native-svg-transformer": "^1.0.0",
     "reactotron-react-native": "^5.0.3",
     "reactotron-react-query": "^1.0.2",
-    "typescript": "*"
+    "typescript": "^5.1.6"
   },
   "private": true
 }
