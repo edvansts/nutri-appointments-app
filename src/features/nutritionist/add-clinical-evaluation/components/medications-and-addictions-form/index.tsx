@@ -11,7 +11,7 @@ import { HelperText, RadioButton, TextInput } from 'react-native-paper';
 import { Text } from '@styles/components/text';
 import { Flex } from '@components/flex';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
-import { ALCOHOLIC_STATUS } from '@constants/patient';
+import { ALCOHOLIC_STATUS, SMOKER_STATUS } from '@constants/patient';
 import { useAddClinicalEvaluationStore } from '../../store/add-clinical-evaluation';
 
 interface MedicationsAndAddictionsFormProps {
@@ -33,6 +33,8 @@ const MedicationsAndAddictionsForm = ({ goToNextStep }: MedicationsAndAddictions
       alcoholicDescription: '',
       hasPerformedWeightLossTreatment: false,
       perfomedWeightLossTreatments: '',
+      smokerDescription: '',
+      smokerStatus: SMOKER_STATUS.INACTIVE,
     },
     shouldUnregister: false,
   });
@@ -51,6 +53,7 @@ const MedicationsAndAddictionsForm = ({ goToNextStep }: MedicationsAndAddictions
   const useMedicinesWatched = watch('useMedicines');
   const hasPerformedWeightLossTreatmentWatched = watch('hasPerformedWeightLossTreatment');
   const alcoholicStatusWatched = watch('alcoholicStatus');
+  const smokerStatusWatched = watch('smokerStatus');
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -225,6 +228,66 @@ const MedicationsAndAddictionsForm = ({ goToNextStep }: MedicationsAndAddictions
 
                   <HelperText type="error" visible>
                     {errors.alcoholicDescription?.message}
+                  </HelperText>
+                </View>
+              )}
+            />
+          )}
+
+          <Controller
+            control={control}
+            name="smokerStatus"
+            render={({ field: { onChange, value } }) => (
+              <Flex flexDirection="column" gap={8}>
+                <Text variant="bodyMedium" color={colors.black} fontWeight="500">
+                  É fumante?
+                </Text>
+
+                <RadioButton.Group
+                  onValueChange={(newValue) => {
+                    onChange(newValue as ALCOHOLIC_STATUS);
+                  }}
+                  value={value}
+                >
+                  <Flex flexDirection="row" alignItems="center" gap={8}>
+                    <RadioButton value={SMOKER_STATUS.ACTIVE} />
+                    <Text variant="bodyMedium" color={colors.black} fontWeight="500">
+                      Sim
+                    </Text>
+                  </Flex>
+                  <Flex flexDirection="row" alignItems="center" gap={8}>
+                    <RadioButton value={SMOKER_STATUS.INACTIVE} />
+                    <Text variant="bodyMedium" color={colors.black} fontWeight="500">
+                      Não
+                    </Text>
+                  </Flex>
+                  <Flex flexDirection="row" alignItems="center" gap={8}>
+                    <RadioButton value={SMOKER_STATUS.FORMER} />
+                    <Text variant="bodyMedium" color={colors.black} fontWeight="500">
+                      Ex-fumante
+                    </Text>
+                  </Flex>
+                </RadioButton.Group>
+              </Flex>
+            )}
+          />
+
+          {smokerStatusWatched !== SMOKER_STATUS.INACTIVE && (
+            <Controller
+              control={control}
+              name="smokerDescription"
+              render={({ field: { onChange, ...field }, formState: { errors } }) => (
+                <View>
+                  <TextInput
+                    {...field}
+                    onChangeText={onChange}
+                    label="Por quanto tempo/parou há quanto tempo?"
+                    autoCapitalize="sentences"
+                    mode="outlined"
+                  />
+
+                  <HelperText type="error" visible>
+                    {errors.smokerDescription?.message}
                   </HelperText>
                 </View>
               )}

@@ -6,6 +6,7 @@ import {
   EATING_PLACE,
   ENVIRONMENT,
   FAMILIAR_BACKGROUND,
+  SMOKER_STATUS,
   SYMPTOM,
 } from '@constants/patient';
 import { type TypeOf, boolean, nativeEnum, object, string, array } from 'zod';
@@ -26,6 +27,9 @@ export const MEDICATIONS_AND_ADDICTIONS_FORM_SCHEMA = object({
 
   alcoholicStatus: nativeEnum(ALCOHOLIC_STATUS),
   alcoholicDescription: string().optional(),
+
+  smokerStatus: nativeEnum(SMOKER_STATUS),
+  smokerDescription: string().optional(),
 })
   .refine((data) => (data.useMedicines ? !!data.medicinesUsed : true), {
     message: requiredError,
@@ -44,6 +48,13 @@ export const MEDICATIONS_AND_ADDICTIONS_FORM_SCHEMA = object({
     {
       message: requiredError,
       path: ['alcoholicDescription'],
+    }
+  )
+  .refine(
+    (data) => (data.smokerStatus !== SMOKER_STATUS.INACTIVE ? !!data.smokerDescription : true),
+    {
+      message: requiredError,
+      path: ['smokerDescription'],
     }
   );
 

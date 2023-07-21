@@ -1,0 +1,1 @@
+export const DEFAULT_TOAST_VISIBILITY_TIME = 8000;

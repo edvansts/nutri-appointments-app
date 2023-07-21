@@ -78,8 +78,8 @@ export const SCHOOLING_LABEL: Record<SCHOOLING, string> = {
 
 export enum SMOKER_STATUS {
   ACTIVE = 'ACTIVE',
-  STOPPED = 'STOPPED',
   FORMER = 'FORMER',
+  INACTIVE = 'INACTIVE',
 }
 
 export enum ALCOHOLIC_STATUS {

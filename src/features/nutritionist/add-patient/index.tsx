@@ -22,8 +22,7 @@ import { usePostCreatePatient } from '../api/post-create-patient';
 import Toast from 'react-native-toast-message';
 import { useNutritionistMainNavigator } from '@hooks/navigator/use-nutritionist-main-stack-navigator';
 import { SubmitButton } from '../components/submit-button';
-
-const EIGHT_SECONDS = 8000;
+import { DEFAULT_TOAST_VISIBILITY_TIME } from '@constants/time';
 
 const AddPatient = () => {
   const { colors } = useAppTheme();
@@ -43,7 +42,7 @@ const AddPatient = () => {
         onPress: () => {
           navigate('patientDetails', { patientId: patient.id });
         },
-        visibilityTime: EIGHT_SECONDS,
+        visibilityTime: DEFAULT_TOAST_VISIBILITY_TIME,
       });
       navigate('tabs', { screen: 'medicalRecords' });
     },

@@ -17,7 +17,7 @@ import { Flex } from '@components/flex';
 import { useAppTheme } from '@hooks/theme/use-app-theme';
 
 interface FamilyBackgroundFormProps {
-  onSubmit: () => void;
+  onSubmit: (data: FamilyBackgroundFormType) => void;
   goBack: () => void;
   isSubmitting: boolean;
 }
@@ -45,7 +45,7 @@ const FamilyBackgroundForm = ({ goBack, onSubmit, isSubmitting }: FamilyBackgrou
 
   const handleSubmitFamilyBackgroundForm: SubmitHandler<FamilyBackgroundFormType> = (data) => {
     setFamilyBackgroundFormData(data);
-    onSubmit();
+    onSubmit(data);
   };
 
   const familiarBackgroundDiseasesWatched = watch('familiarBackgroundDiseases');
